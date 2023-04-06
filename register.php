@@ -1,6 +1,13 @@
 <?php
 require ('dbcon.php');
 
+if(isset($_SESSION['admin_login'])){
+  header('location: index.php');
+}
+if(isset($_SESSION['user_login'])){
+  header('location: u-index.php');
+}
+
 if(isset($_POST['register'])){
   $fname = trim($_POST['fname']);
   $lname = trim($_POST['lname']);

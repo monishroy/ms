@@ -1,6 +1,13 @@
 <?php
 require ('dbcon.php');
 
+if(isset($_SESSION['admin_login'])){
+  header('location: index.php');
+}
+if(isset($_SESSION['user_login'])){
+  header('location: u-index.php');
+}
+
 if(isset($_POST['login'])){
   $email = $_POST['email'];
   $password = $_POST['password'];
@@ -90,11 +97,11 @@ if(isset($_POST['login'])){
               <h6 class="font-weight-light">Sign in to continue.</h6>
               <form class="pt-3" action="" method="POST">
                 <div class="form-group">
-                  <input type="text" class="form-control <?php if(isset($input_errors['email'])){ echo 'border-danger'; } ?>" id="email" name="email" placeholder="Email of Phone">
+                  <input type="text" class="form-control <?php if(isset($input_errors['email'])){ echo 'border-danger'; } ?>" id="email" name="email" placeholder="Email of Phone"  value="<?= isset($email) ? $email:'' ?>" >
                   <?php if(isset($email_error)){ ?><span class="text-danger"><?= $email_error ?></span><?php } ?>
                 </div>
                 <div class="form-group">
-                  <input type="password" class="form-control <?php if(isset($input_errors['password'])){ echo 'border-danger'; } ?>" id="password" name="password" placeholder="Password">
+                  <input type="password" class="form-control <?php if(isset($input_errors['password'])){ echo 'border-danger'; } ?>" id="password" name="password" placeholder="Password"  value="<?= isset($password) ? $password:'' ?>" >
                   <?php if(isset($password_error)){ ?><span class="text-danger"><?= $password_error ?></span><?php } ?>
                 </div>
                 <div class="mt-3">

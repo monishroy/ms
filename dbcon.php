@@ -2,6 +2,8 @@
 
 $con = mysqli_connect('localhost','root','','pms');
 
+session_start();
+
 mysqli_query($con,'SET CHARACTER SET utf8');
 mysqli_query($con,"SET SESSION collation_connection ='utf8_general_ci'");
 
