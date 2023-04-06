@@ -32,15 +32,15 @@
   </head>
   <body>
     <div class="container-scroller">
-      <!-- partial:partials/_navbar.html -->
+      <!-- partial:partials/_navbar.php -->
       <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
         <div
           class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center"
         >
-          <a class="navbar-brand brand-logo mr-5" href="index.html"
+          <a class="navbar-brand brand-logo mr-5" href="index.php"
             ><img src="images/logo.svg" class="mr-2" alt="logo"
           /></a>
-          <a class="navbar-brand brand-logo-mini" href="index.html"
+          <a class="navbar-brand brand-logo-mini" href="index.php"
             ><img src="images/logo-mini.svg" alt="logo"
           /></a>
         </div>
@@ -174,23 +174,23 @@
       <!-- partial -->
       <div class="container-fluid page-body-wrapper">
         <!-- partial -->
-        <!-- partial:partials/_sidebar.html -->
+        <!-- partial:partials/_sidebar.php -->
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
           <ul class="nav">
             <li class="nav-item">
-              <a class="nav-link" href="index.html">
+              <a class="nav-link" href="index.php">
                 <i class="icon-grid menu-icon"></i>
                 <span class="menu-title">Dashboard</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="add_student.html">
+              <a class="nav-link" href="add_student.php">
                 <i class="icon-head menu-icon"></i>
                 <span class="menu-title">Add Student</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="students.html">
+              <a class="nav-link" href="students.php">
                 <i class="icon-head menu-icon"></i>
                 <span class="menu-title">Students</span>
               </a>
@@ -204,7 +204,7 @@
               <div class="col-md-12 grid-margin">
                 <div class="row">
                   <div class="col-12 col-xl-8 mb-4 mb-xl-0">
-                    <h3 class="font-weight-bold">Students</h3>
+                    <h3 class="font-weight-bold">Add Student</h3>
                   </div>
                   <div class="col-12 col-xl-4">
                     <div class="justify-content-end d-flex">
@@ -226,75 +226,136 @@
               <div class="col-md-12 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <div class="d-flex justify-content-between">
-                      <a class="btn btn-primary mb-3" href="add_student.html"
-                        >Add Student</a
-                      >
-                      <div class="row mb-3">
-                        <form class="d-flex justify-content-end">
-                          <a class="btn btn-primary mx-3" href="">Print</a>
-                          <input
-                            class="form-control rounded-pill me-2"
-                            type="search"
-                            placeholder="Search..."
-                            aria-label="Search"
-                          />
-                          <button
-                            class="btn btn-outline-success mx-3"
-                            type="submit"
-                          >
-                            Search
-                          </button>
-                        </form>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-12">
-                        <div class="table-responsive">
-                          <table
-                            id="example"
-                            class="display expandable-table"
-                            style="width: 100%"
-                          >
-                            <thead>
-                              <tr>
-                                <th>#</th>
-                                <th>Name</th>
-                                <th>Roll</th>
-                                <th>Registration</th>
-                                <th>Session</th>
-                                <th>Dipartment</th>
-                                <th>Job Status</th>
-                                <th>Added On</th>
-                                <th>Action</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr>
-                                <td>1</td>
-                                <td>Monish Roy</td>
-                                <td>407401</td>
-                                <td>1502002992</td>
-                                <td>2019-20</td>
-                                <td>Computer</td>
-                                <td>
-                                  <label class="badge badge-info">Joined</label>
-                                </td>
-                                <td>May 15, 2015</td>
-                                <td>Edit</td>
-                              </tr>
-                            </tbody>
-                          </table>
+                    <form class="forms-sample" action="" method="POST">
+                      <div class="row">
+                        <div class="col-4">
+                          <div class="form-group">
+                            <label for="first-name">First Name</label>
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="first-name"
+                              name="first-name"
+                              placeholder="First Name"
+                            />
+                          </div>
+                        </div>
+                        <div class="col-4">
+                          <div class="form-group">
+                            <label for="last-name">Last Name</label>
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="last-name"
+                              name="last-name"
+                              placeholder="Last Name"
+                            />
+                          </div>
+                        </div>
+                        <div class="col-4">
+                          <div class="form-group">
+                            <label for="email">Email address</label>
+                            <input
+                              type="email"
+                              class="form-control"
+                              id="email"
+                              name="email"
+                              placeholder="Email"
+                            />
+                          </div>
+                        </div>
+                        <div class="col-4">
+                          <div class="form-group">
+                            <label for="department">Department</label>
+                            <select
+                              class="form-control"
+                              id="department"
+                              name="department"
+                            >
+                              <option>Computer</option>
+                              <option>Civil</option>
+                              <option>Electrical</option>
+                              <option>Electronics</option>
+                              <option>Mechanical</option>
+                            </select>
+                          </div>
+                        </div>
+
+                        <div class="col-4">
+                          <div class="form-group">
+                            <label for="roll">Roll</label>
+                            <input
+                              type="number"
+                              class="form-control"
+                              id="roll"
+                              name="roll"
+                              placeholder="Roll"
+                            />
+                          </div>
+                        </div>
+                        <div class="col-4">
+                          <div class="form-group">
+                            <label for="registration">Registration</label>
+                            <input
+                              type="number"
+                              class="form-control"
+                              id="registration"
+                              name="registration"
+                              placeholder="Registration"
+                            />
+                          </div>
+                        </div>
+                        <div class="col-4">
+                          <div class="form-group">
+                            <label for="session">Session</label>
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="session"
+                              name="session"
+                              placeholder="Session"
+                            />
+                          </div>
+                        </div>
+                        <div class="col-4">
+                          <div class="form-group">
+                            <label for="phone-number">Phone Number</label>
+                            <input
+                              type="number"
+                              class="form-control"
+                              id="phone-number"
+                              name="phone"
+                              placeholder="Phone Number"
+                            />
+                          </div>
+                        </div>
+                        <div class="col-4">
+                          <div class="form-group">
+                            <label for="password">Password</label>
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="password"
+                              name="password"
+                              placeholder="Password"
+                              value="123456"
+                            />
+                          </div>
                         </div>
                       </div>
-                    </div>
+
+                      <button type="submit" class="btn btn-primary mr-2">
+                        Submit
+                      </button>
+                      <button class="btn btn-light">Cancel</button>
+                    </form>
                   </div>
                 </div>
               </div>
             </div>
           </div>
           <!-- content-wrapper ends -->
-          <!-- partial:partials/_footer.html -->
+          <!-- partial:partials/_footer.php -->
           <footer class="footer">
             <div
               class="d-sm-flex justify-content-center justify-content-sm-between"
@@ -332,6 +393,10 @@
     <script src="vendors/datatables.net/jquery.dataTables.js"></script>
     <script src="vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
     <script src="js/dataTables.select.min.js"></script>
+    <!-- Plugin js for this page -->
+    <script src="vendors/typeahead.js/typeahead.bundle.min.js"></script>
+    <script src="vendors/select2/select2.min.js"></script>
+    <!-- End plugin js for this page -->
 
     <!-- End plugin js for this page -->
     <!-- inject:js -->
@@ -344,6 +409,11 @@
     <!-- Custom js for this page-->
     <script src="js/dashboard.js"></script>
     <script src="js/Chart.roundedBarCharts.js"></script>
+    <!-- End custom js for this page-->
+    <!-- Custom js for this page-->
+    <script src="js/file-upload.js"></script>
+    <script src="js/typeahead.js"></script>
+    <script src="js/select2.js"></script>
     <!-- End custom js for this page-->
   </body>
 </html>

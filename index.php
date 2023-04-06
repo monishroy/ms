@@ -32,15 +32,15 @@
   </head>
   <body>
     <div class="container-scroller">
-      <!-- partial:partials/_navbar.html -->
+      <!-- partial:partials/_navbar.php -->
       <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
         <div
           class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center"
         >
-          <a class="navbar-brand brand-logo mr-5" href="index.html"
+          <a class="navbar-brand brand-logo mr-5" href="index.php"
             ><img src="images/logo.svg" class="mr-2" alt="logo"
           /></a>
-          <a class="navbar-brand brand-logo-mini" href="index.html"
+          <a class="navbar-brand brand-logo-mini" href="index.php"
             ><img src="images/logo-mini.svg" alt="logo"
           /></a>
         </div>
@@ -174,26 +174,47 @@
       <!-- partial -->
       <div class="container-fluid page-body-wrapper">
         <!-- partial -->
-        <!-- partial:partials/_sidebar.html -->
+        <!-- partial:partials/_sidebar.php -->
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
           <ul class="nav">
             <li class="nav-item">
-              <a class="nav-link" href="index.html">
+              <a class="nav-link" href="index.php">
                 <i class="icon-grid menu-icon"></i>
                 <span class="menu-title">Dashboard</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="add_student.html">
+              <a class="nav-link" href="add_student.php">
                 <i class="icon-head menu-icon"></i>
                 <span class="menu-title">Add Student</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="students.html">
+              <a class="nav-link" href="students.php">
                 <i class="icon-head menu-icon"></i>
                 <span class="menu-title">Students</span>
               </a>
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                data-toggle="collapse"
+                href="#ui-basic"
+                aria-expanded="false"
+                aria-controls="ui-basic"
+              >
+                <i class="icon-layout menu-icon"></i>
+                <span class="menu-title">Catagories</span>
+                <i class="menu-arrow"></i>
+              </a>
+              <div class="collapse" id="ui-basic">
+                <ul class="nav flex-column sub-menu">
+                  <li class="nav-item">
+                    <a class="nav-link" href="add_department.php">Department</a>
+                    <a class="nav-link" href="add_comphany.php">Comphany</a>
+                  </li>
+                </ul>
+              </div>
             </li>
           </ul>
         </nav>
@@ -204,7 +225,7 @@
               <div class="col-md-12 grid-margin">
                 <div class="row">
                   <div class="col-12 col-xl-8 mb-4 mb-xl-0">
-                    <h3 class="font-weight-bold">Add Student</h3>
+                    <h3 class="font-weight-bold">Welcome Monish Roy</h3>
                   </div>
                   <div class="col-12 col-xl-4">
                     <div class="justify-content-end d-flex">
@@ -221,141 +242,98 @@
                 </div>
               </div>
             </div>
+            <div class="row">
+              <div class="col-md-12 grid-margin transparent">
+                <div class="row">
+                  <div class="col-md-3 mb-4 stretch-card transparent">
+                    <div class="card card-tale">
+                      <div class="card-body">
+                        <p class="mb-4">Total Students</p>
+                        <p class="fs-30 mb-2">4006</p>
+                        <p>10.00% (30 days)</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-3 mb-4 stretch-card transparent">
+                    <div class="card card-dark-blue">
+                      <div class="card-body">
+                        <p class="mb-4">Total Bookings</p>
+                        <p class="fs-30 mb-2">61344</p>
+                        <p>22.00% (30 days)</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-3 mb-4 stretch-card transparent">
+                    <div class="card card-light-blue">
+                      <div class="card-body">
+                        <p class="mb-4">Total Bookings</p>
+                        <p class="fs-30 mb-2">61344</p>
+                        <p>22.00% (30 days)</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-3 mb-4 stretch-card transparent">
+                    <div class="card card-light-danger">
+                      <div class="card-body">
+                        <p class="mb-4">Total Bookings</p>
+                        <p class="fs-30 mb-2">61344</p>
+                        <p>22.00% (30 days)</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
 
             <div class="row">
               <div class="col-md-12 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <form class="forms-sample" action="" method="POST">
-                      <div class="row">
-                        <div class="col-4">
-                          <div class="form-group">
-                            <label for="first-name">First Name</label>
-                            <input
-                              type="text"
-                              class="form-control"
-                              id="first-name"
-                              name="first-name"
-                              placeholder="First Name"
-                            />
-                          </div>
-                        </div>
-                        <div class="col-4">
-                          <div class="form-group">
-                            <label for="last-name">Last Name</label>
-                            <input
-                              type="text"
-                              class="form-control"
-                              id="last-name"
-                              name="last-name"
-                              placeholder="Last Name"
-                            />
-                          </div>
-                        </div>
-                        <div class="col-4">
-                          <div class="form-group">
-                            <label for="email">Email address</label>
-                            <input
-                              type="email"
-                              class="form-control"
-                              id="email"
-                              name="email"
-                              placeholder="Email"
-                            />
-                          </div>
-                        </div>
-                        <div class="col-4">
-                          <div class="form-group">
-                            <label for="department">Department</label>
-                            <select
-                              class="form-control"
-                              id="department"
-                              name="department"
-                            >
-                              <option>Computer</option>
-                              <option>Civil</option>
-                              <option>Electrical</option>
-                              <option>Electronics</option>
-                              <option>Mechanical</option>
-                            </select>
-                          </div>
-                        </div>
-
-                        <div class="col-4">
-                          <div class="form-group">
-                            <label for="roll">Roll</label>
-                            <input
-                              type="number"
-                              class="form-control"
-                              id="roll"
-                              name="roll"
-                              placeholder="Roll"
-                            />
-                          </div>
-                        </div>
-                        <div class="col-4">
-                          <div class="form-group">
-                            <label for="registration">Registration</label>
-                            <input
-                              type="number"
-                              class="form-control"
-                              id="registration"
-                              name="registration"
-                              placeholder="Registration"
-                            />
-                          </div>
-                        </div>
-                        <div class="col-4">
-                          <div class="form-group">
-                            <label for="session">Session</label>
-                            <input
-                              type="text"
-                              class="form-control"
-                              id="session"
-                              name="session"
-                              placeholder="Session"
-                            />
-                          </div>
-                        </div>
-                        <div class="col-4">
-                          <div class="form-group">
-                            <label for="phone-number">Phone Number</label>
-                            <input
-                              type="number"
-                              class="form-control"
-                              id="phone-number"
-                              name="phone"
-                              placeholder="Phone Number"
-                            />
-                          </div>
-                        </div>
-                        <div class="col-4">
-                          <div class="form-group">
-                            <label for="password">Password</label>
-                            <input
-                              type="text"
-                              class="form-control"
-                              id="password"
-                              name="password"
-                              placeholder="Password"
-                              value="123456"
-                            />
-                          </div>
+                    <p class="card-title">Recent Students Added</p>
+                    <div class="row">
+                      <div class="col-12">
+                        <div class="table-responsive">
+                          <table
+                            id="example"
+                            class="display expandable-table"
+                            style="width: 100%"
+                          >
+                            <thead>
+                              <tr>
+                                <th>Quote#</th>
+                                <th>Product</th>
+                                <th>Business type</th>
+                                <th>Policy holder</th>
+                                <th>Premium</th>
+                                <th>Status</th>
+                                <th>Updated at</th>
+                                <th></th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr class="odd">
+                                <td class="select-checkbox">Incs235</td>
+                                <td class="">Car insurance</td>
+                                <td class="sorting_1">Business type 2</td>
+                                <td>Jesse Thomas</td>
+                                <td>$1200</td>
+                                <td>Active</td>
+                                <td>25/04/2020</td>
+                                <td class="details-control"></td>
+                              </tr>
+                              
+                            </tbody>
+                          </table>
                         </div>
                       </div>
-
-                      <button type="submit" class="btn btn-primary mr-2">
-                        Submit
-                      </button>
-                      <button class="btn btn-light">Cancel</button>
-                    </form>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
           <!-- content-wrapper ends -->
-          <!-- partial:partials/_footer.html -->
+          <!-- partial:partials/_footer.php -->
           <footer class="footer">
             <div
               class="d-sm-flex justify-content-center justify-content-sm-between"
@@ -373,7 +351,9 @@
               <span
                 class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"
                 >Development by <i class="ti-heart text-danger ml-1"></i
-                ><a href=""> Monish Roy</a></span
+                ><a target="_blank" href="https://www.mnotion.com/">
+                  Monish Roy</a
+                ></span
               >
             </div>
           </footer>
@@ -393,10 +373,6 @@
     <script src="vendors/datatables.net/jquery.dataTables.js"></script>
     <script src="vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
     <script src="js/dataTables.select.min.js"></script>
-    <!-- Plugin js for this page -->
-    <script src="vendors/typeahead.js/typeahead.bundle.min.js"></script>
-    <script src="vendors/select2/select2.min.js"></script>
-    <!-- End plugin js for this page -->
 
     <!-- End plugin js for this page -->
     <!-- inject:js -->
@@ -409,11 +385,6 @@
     <!-- Custom js for this page-->
     <script src="js/dashboard.js"></script>
     <script src="js/Chart.roundedBarCharts.js"></script>
-    <!-- End custom js for this page-->
-    <!-- Custom js for this page-->
-    <script src="js/file-upload.js"></script>
-    <script src="js/typeahead.js"></script>
-    <script src="js/select2.js"></script>
     <!-- End custom js for this page-->
   </body>
 </html>
