@@ -69,25 +69,50 @@
                                 <th>Registration</th>
                                 <th>Session</th>
                                 <th>Dipartment</th>
-                                <th>Job Status</th>
+                                <th>Company</th>
+                                <th>Status</th>
                                 <th>Added On</th>
                                 <th>Action</th>
                               </tr>
                             </thead>
                             <tbody>
-                              <tr>
-                                <td>1</td>
-                                <td>Monish Roy</td>
-                                <td>407401</td>
-                                <td>1502002992</td>
-                                <td>2019-20</td>
-                                <td>Computer</td>
-                                <td>
-                                  <label class="badge badge-info">Joined</label>
-                                </td>
-                                <td>May 15, 2015</td>
-                                <td>Edit</td>
-                              </tr>
+                              <?php
+                              $sl = 1;
+                              $result = mysqli_query($con, "SELECT * FROM `students`");
+                              while($row=mysqli_fetch_assoc($result)){
+                                ?>
+                                <tr>
+                                  <td><?= $sl ?></td>
+                                  <td><?= ucwords($row['fname'].' '.$row['lname']) ?></td>
+                                  <td><?= $row['roll'] ?></td>
+                                  <td><?= $row['registration'] ?></td>
+                                  <td><?= $row['session'] ?></td>
+                                  <td><?= $row['department'] ?></td>
+                                  <td><?= $row['company'] ?></td>
+                                  <td>
+                                    <?php
+                                      if($row['status'] == 1){
+                                        ?>
+                                        <a class="" href="status_active?id=<?= base64_encode($row['id']) ?>"><label class="badge badge-success">Active</label></a>
+                                        <?php
+                                      }else{
+                                        ?>
+                                        <a class="" href="status_active?id=<?= base64_encode($row['id']) ?>"><label class="badge badge-danger">Deactive</label></a>
+                                        <?php
+                                      }
+                                    ?>
+                                    
+                                  </td>
+                                  <td><?= date('d M Y', strtotime($row['datetime'])) ?></td>
+                                  <td>
+                                    <a class="text-info fs-5" href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#department-<?= $row['id'] ?>"><i class='bx bx-edit'></i></a>
+                                    <a class="text-danger fs-5 lh-1" onclick="return confirm('Are you sure to delete ?')" href="delete.php?department=<?= $row['id'] ?>"><i class='bx bx-trash' ></i></a>
+                                  </td>
+                                </tr>
+                                <?php
+                                $sl++;
+                              }
+                              ?>
                             </tbody>
                           </table>
                         </div>

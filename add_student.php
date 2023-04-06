@@ -86,7 +86,7 @@
                         $phone_check_row = mysqli_num_rows($phone_check);
 
                         if($phone_check_row == 0) {
-                          $result = mysqli_query($con, "INSERT INTO `students`(`fname`, `lname`, `email`, `phone`, `roll`, `registration`, `session`, `department`, `job_status`, `status`) VALUES ('$fname','$lname','$email','$phone','$roll','$reg','$session','$department','$company','1')");
+                          $result = mysqli_query($con, "INSERT INTO `students`(`fname`, `lname`, `email`, `phone`, `roll`, `registration`, `session`, `department`, `company`, `status`) VALUES ('$fname','$lname','$email','$phone','$roll','$reg','$session','$department','$company','1')");
                           if($result){
                             $success = "Registration Successfully !";
                           }else{
@@ -161,6 +161,7 @@
                               id="department"
                               name="department"
                             >
+                              <option value="0">Select Department</option>
                               <?php
                               $data = mysqli_query($con, "SELECT * FROM `department`");
                               while($row=mysqli_fetch_assoc($data)){
@@ -209,6 +210,7 @@
                               id="session"
                               name="session"
                             >
+                              <option value="0">Select Session</option>
                               <?php
                               $data = mysqli_query($con, "SELECT * FROM `session`");
                               while($row=mysqli_fetch_assoc($data)){
@@ -242,6 +244,7 @@
                               id="company-name"
                               name="company"
                             >
+                              <option value="0">Select Company</option>
                               <?php
                               $data = mysqli_query($con, "SELECT * FROM `company`");
                               while($row=mysqli_fetch_assoc($data)){
