@@ -18,7 +18,7 @@
                           class="btn btn-sm btn-light bg-white"
                           type="button"
                         >
-                          <i class="mdi mdi-calendar"></i> Today (10 Jan 2021)
+                          <i class="mdi mdi-calendar"></i> Today (<?= date('d M Y') ?>)
                         </button>
                       </div>
                     </div>

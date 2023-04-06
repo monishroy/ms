@@ -1,5 +1,6 @@
 <?php
-require ('dbcon.php');
+require ('connection.inc.php');
+require ('functions.inc.php');
 
 if(!isset($_SESSION['admin_login'])){
   header('location: login.php');

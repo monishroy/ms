@@ -18,7 +18,7 @@
                           class="btn btn-sm btn-light bg-white"
                           type="button"
                         >
-                          <i class="mdi mdi-calendar"></i> Today (10 Jan 2021)
+                          <i class="mdi mdi-calendar"></i> Today (<?= date('d M Y') ?>)
                         </button>
                       </div>
                     </div>
@@ -41,7 +41,7 @@
                   <div class="col-md-3 mb-4 stretch-card transparent">
                     <div class="card card-dark-blue">
                       <div class="card-body">
-                        <p class="mb-4">Total Bookings</p>
+                        <p class="mb-4">Total User</p>
                         <p class="fs-30 mb-2">61344</p>
                         <p>22.00% (30 days)</p>
                       </div>

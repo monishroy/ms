@@ -1,5 +1,6 @@
 <?php
-require ('dbcon.php');
+require ('connection.inc.php');
+require ('functions.inc.php');
 
 if(!isset($_SESSION['admin_login'])){
   header('location: login.php');
@@ -188,8 +189,7 @@ $admin_info = mysqli_fetch_assoc($data);
       </nav>
       <!-- partial -->
       <div class="container-fluid page-body-wrapper">
-        <!-- partial -->
-        <!-- partial:partials/_sidebar.php -->
+      <!-- partial -->
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
           <ul class="nav">
             <li class="nav-item">
@@ -213,7 +213,7 @@ $admin_info = mysqli_fetch_assoc($data);
             <li class="nav-item">
               <a class="nav-link" href="add_categories.php">
                 <i class="icon-layout menu-icon"></i>
-                <span class="menu-title">Catagories</span>
+                <span class="menu-title">Categories</span>
               </a>
             </li>
             
