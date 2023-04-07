@@ -65,4 +65,21 @@ if(isset($_GET['company'])){
       exit(0);
     }
 }
+
+
+//Message Delete
+if(isset($_GET['message'])){
+  $id = get_safe_value($con,$_GET['message']);
+
+  $result = mysqli_query($con, "DELETE FROM `message` WHERE `id` = '$id'");
+  if($result){
+    $_SESSION['message-success'] = "Delete Successfully";
+    header('location: a-message.php');
+    exit(0);
+  }else{
+    $_SESSION['message-error'] = "Something is Worng";
+    header('location: a-message.php');
+    exit(0);
+  }
+}
 ?>

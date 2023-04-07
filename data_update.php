@@ -2,6 +2,7 @@
 require ('connection.inc.php');
 require ('functions.inc.php');
 
+//Update Student Admin
 if(isset($_POST['update_student'])){
   
   $id = get_safe_value($con,$_POST['id']);
@@ -23,6 +24,32 @@ if(isset($_POST['update_student'])){
   }else{
     $_SESSION['student-error'] = "Something is Worng";
     header('location: students.php');
+    exit(0);
+  }
+}
+
+//Update Profile
+if(isset($_POST['update_profile'])){
+  
+  $id = get_safe_value($con,$_POST['id']);
+  $fname = get_safe_value($con, $_POST['fname']);
+  $lname = get_safe_value($con, $_POST['lname']);
+  $email = get_safe_value($con, $_POST['email']);
+  $department = get_safe_value($con, $_POST['department']);
+  $roll = get_safe_value($con, $_POST['roll']);
+  $reg = get_safe_value($con, $_POST['reg']);
+  $session = get_safe_value($con, $_POST['session']);
+  $phone = get_safe_value($con, $_POST['phone']);
+  $company = get_safe_value($con, $_POST['company']);
+
+  $result = mysqli_query($con, "UPDATE `students` SET `fname`='$fname',`lname`='$lname',`email`='$email',`phone`='$phone',`roll`='$roll',`registration`='$reg',`session`='$session',`department`='$department',`company`='$company' WHERE `id` = '$id'");
+  if($result){
+    $_SESSION['student-success'] = "Update Successfully";
+    header('location: update_student.php');
+    exit(0);
+  }else{
+    $_SESSION['student-error'] = "Something is Worng";
+    header('location: update_student.php');
     exit(0);
   }
 }
@@ -78,4 +105,20 @@ if(isset($_POST['update_company'])){
   }
 }
 
+//Message Replay
+if(isset($_POST['message_replay'])){
+  $replay = get_safe_value($con,$_POST['replay']);
+  $id = get_safe_value($con,$_POST['id']);
+
+  $result = mysqli_query($con, "UPDATE `message` SET `replay`='$replay', `status`='0' WHERE `id` = '$id'");
+  if($result){
+    $_SESSION['message-success'] = "Replay Send Successfully";
+    header('location: a-message.php');
+    exit(0);
+  }else{
+    $_SESSION['message-error'] = "Something is Worng";
+    header('location: a-message.php');
+    exit(0);
+  }
+}
 ?>

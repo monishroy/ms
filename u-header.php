@@ -2,13 +2,13 @@
 require ('connection.inc.php');
 require ('functions.inc.php');
 
-if(!isset($_SESSION['admin_login'])){
+if(!isset($_SESSION['user_login'])){
   header('location: login.php');
 }
 
-$admin_login = $_SESSION['admin_login'];
-$data = mysqli_query($con, "SELECT * FROM `user` WHERE `email` = '$admin_login' OR `phone` = '$admin_login'");
-$admin_info = mysqli_fetch_assoc($data);
+$user_login = $_SESSION['user_login'];
+$data = mysqli_query($con, "SELECT * FROM `user` WHERE `email` = '$user_login' OR `phone` = '$user_login'");
+$user_info = mysqli_fetch_assoc($data);
 
 ?>
 
@@ -26,9 +26,11 @@ $admin_info = mysqli_fetch_assoc($data);
     <link rel="stylesheet" href="vendors/feather/feather.css" />
     <link rel="stylesheet" href="vendors/ti-icons/css/themify-icons.css" />
     <link rel="stylesheet" href="vendors/css/vendor.bundle.base.css" />
+    <!-- endinject -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <!-- endinject -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- Plugin css for this page -->
     <!-- Plugin css for this page -->
     <link
       rel="stylesheet"
@@ -169,7 +171,7 @@ $admin_info = mysqli_fetch_assoc($data);
                 aria-labelledby="profileDropdown"
               >
                 <a class="dropdown-item">
-                  <h5><?= ucwords($admin_info['fname'].' '.$admin_info['lname']) ?></h5>
+                  <h5><?= ucwords($user_info['fname'].' '.$user_info['lname']) ?></h5>
                 </a>
                 <a href="logout.php" class="dropdown-item">
                   <i class="ti-power-off text-primary"></i>
@@ -189,38 +191,28 @@ $admin_info = mysqli_fetch_assoc($data);
       </nav>
       <!-- partial -->
       <div class="container-fluid page-body-wrapper">
-      <!-- partial -->
+        <!-- partial -->
+        <!-- partial:partials/_sidebar.php -->
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
           <ul class="nav">
             <li class="nav-item">
-              <a class="nav-link" href="index.php">
+              <a class="nav-link" href="u-index.php">
                 <i class="icon-grid menu-icon"></i>
                 <span class="menu-title">Dashboard</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="add_student.php">
-                <i class="bx bx-user-plus menu-icon fs-5"></i>
-                <span class="menu-title">Add Student</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="students.php">
+              <a class="nav-link" href="profile.php">
                 <i class="icon-head menu-icon"></i>
-                <span class="menu-title">Students</span>
+                <span class="menu-title">Profile</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="add_categories.php">
-                <i class="icon-layout menu-icon"></i>
-                <span class="menu-title">Categories</span>
+              <a class="nav-link" href="update_student.php">
+                <i class="icon-head menu-icon"></i>
+                <span class="menu-title">Update Profile</span>
               </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="a-message.php">
-                <i class="icon-mail menu-icon"></i>
-                <span class="menu-title">Message</span>
-              </a>
-            </li>
+            
           </ul>
         </nav>

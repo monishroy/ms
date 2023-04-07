@@ -163,11 +163,18 @@
                             >
                               <option value="0">Select Department</option>
                               <?php
+                              $department_id = $department;
                               $data = mysqli_query($con, "SELECT * FROM `department`");
-                              while($row=mysqli_fetch_assoc($data)){
-                                ?>
-                                <option value="<?= $row['id'] ?>"><?= $row['name'] ?></option>
-                                <?php
+                              while($department=mysqli_fetch_assoc($data)){
+                                if($department_id == $department['id']){
+                                  ?>
+                                  <option selected="" value="<?= $department['id'] ?>"><?= $department['name'] ?></option>
+                                  <?php
+                                }else{
+                                  ?>
+                                  <option value="<?= $department['id'] ?>"><?= $department['name'] ?></option>
+                                  <?php
+                                }
                               }
                               ?>
                             </select>
@@ -212,11 +219,18 @@
                             >
                               <option value="0">Select Session</option>
                               <?php
+                              $session_id = $session;
                               $data = mysqli_query($con, "SELECT * FROM `session`");
-                              while($row=mysqli_fetch_assoc($data)){
-                                ?>
-                                <option value="<?= $row['id'] ?>"><?= $row['name'] ?></option>
-                                <?php
+                              while($session=mysqli_fetch_assoc($data)){
+                                if($session_id == $session['id']){
+                                  ?>
+                                  <option selected="" value="<?= $session['id'] ?>"><?= $session['name'] ?></option>
+                                  <?php
+                                }else{
+                                  ?>
+                                  <option value="<?= $session['id'] ?>"><?= $session['name'] ?></option>
+                                  <?php
+                                }
                               }
                               ?>
                             </select>
@@ -246,11 +260,18 @@
                             >
                               <option value="0">Select Company</option>
                               <?php
+                              $company_id = $company;
                               $data = mysqli_query($con, "SELECT * FROM `company`");
-                              while($row=mysqli_fetch_assoc($data)){
-                                ?>
-                                <option value="<?= $row['id'] ?>"><?= $row['name'] ?></option>
-                                <?php
+                              while($company=mysqli_fetch_assoc($data)){
+                                if($company_id == $company['id']){
+                                  ?>
+                                  <option selected="" value="<?= $company['id'] ?>"><?= $company['name'] ?></option>
+                                  <?php
+                                }else{
+                                  ?>
+                                  <option value="<?= $company['id'] ?>"><?= $company['name'] ?></option>
+                                  <?php
+                                }
                               }
                               ?>
                             </select>

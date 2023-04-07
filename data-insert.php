@@ -96,4 +96,22 @@ if(isset($_POST['company'])){
     
 }
 
+//Send Message
+if(isset($_POST['send_message'])){
+    $user_id = get_safe_value($con,$_POST['user_id']);
+    $subject = get_safe_value($con,$_POST['subject']);
+    $message = get_safe_value($con,$_POST['message']);
+
+    $result = mysqli_query($con, "INSERT INTO `message`(`user_id`, `subject`, `message`, `status`) VALUES ('$user_id','$subject','$message','1')");
+    if($result){
+        $_SESSION['message-success'] = "Send Successfully";
+        header('location: u-index.php');
+        exit(0);
+    }else{
+        $_SESSION['message-error'] = "Something is Worng";
+        header('location: u-index.php');
+        exit(0);
+    }
+    
+}
 ?>

@@ -52,7 +52,7 @@ if(isset($_POST['login'])){
           }
         }
       }else{
-        $active = "Your account deactive !";
+        $user_type = "Your account deactive !";
       }
     }else{
       $password_error = "Password Worng!";
@@ -70,13 +70,17 @@ if(isset($_POST['login'])){
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Skydash Admin</title>
+  <title>Students Login</title>
   <!-- plugins:css -->
   <link rel="stylesheet" href="vendors/feather/feather.css">
   <link rel="stylesheet" href="vendors/ti-icons/css/themify-icons.css">
   <link rel="stylesheet" href="vendors/css/vendor.bundle.base.css">
   <!-- endinject -->
   <!-- Plugin css for this page -->
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <!-- endinject -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- Plugin css for this page -->
   <!-- End plugin css for this page -->
   <!-- inject:css -->
   <link rel="stylesheet" href="css/vertical-layout-light/style.css">
@@ -89,11 +93,21 @@ if(isset($_POST['login'])){
     <div class="container-fluid page-body-wrapper full-page-wrapper">
       <div class="content-wrapper d-flex align-items-center auth px-0">
         <div class="row w-100 mx-0">
-          <div class="col-lg-4 mx-auto">
+          <div class="col-lg-3 mx-auto">
             <div class="auth-form-light text-left py-5 px-4 px-sm-5">
               <div class="brand-logo">
-                <img src="images/logo.svg" alt="logo">
+                <img src="images/logo.png" alt="logo">
               </div>
+              <?php
+              if(isset($user_type)){
+                ?>
+                <div class="alert alert-danger" role="alert">
+                  <?= $user_type ?>
+                </div>
+                <?php
+              }
+              ?>
+              
               <h4>Hello! let's get started</h4>
               <h6 class="font-weight-light">Sign in to continue.</h6>
               <form class="pt-3" action="" method="POST">
