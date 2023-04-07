@@ -44,7 +44,7 @@ if(isset($_POST['register'])){
       if($phone_check_row == 0) {
         if(strlen($password) > 5){
           $password_hash = password_hash($password, PASSWORD_DEFAULT);
-          $result = mysqli_query($con, "INSERT INTO `user`(`fname`, `lname`, `email`, `phone`, `password`, `status`) VALUES ('$fname','$lname','$email','$phone','$password_hash','1')");
+          $result = mysqli_query($con, "INSERT INTO `user`(`fname`, `lname`, `image`, `email`, `phone`, `password`, `status`) VALUES ('$fname','$lname','default.png','$email','$phone','$password_hash','1')");
           if($result){
             $success = "Registration Successfully !";
             $user = $fname;

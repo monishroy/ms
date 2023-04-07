@@ -68,7 +68,6 @@
                   $input_errors['company'] = " field is required!";
                 }
 
-
                 if (count($input_errors) == 0) {
                   $email_check = mysqli_query($con, "SELECT * FROM `students` WHERE `email` = '$email'");
                   $email_check_row = mysqli_num_rows($email_check);
@@ -110,7 +109,8 @@
             <div class="row">
               <?php
               $phone = $user_info['phone'];
-              $student_data = mysqli_query($con, "SELECT * FROM `students` WHERE `phone` = '$phone'");
+              $email = $user_info['email'];
+              $student_data = mysqli_query($con, "SELECT * FROM `students` WHERE `phone` = '$phone' OR `email` = '$email'");
               $count_student_data = mysqli_num_rows($student_data);
               if($count_student_data == 0){
                 ?>

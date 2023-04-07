@@ -20,7 +20,7 @@
                 <div class="card">
                   <div class="card-body">
                     <div class="d-flex justify-content-center">
-                      <img class="rounded border border-5" src="images/faces/face4.jpg" alt="">
+                      <img class="rounded border border-5" src="images/user/<?= $user_info['image'] ?>" style="max-height: 130px;" alt="">
                     </div>
                     <h3 class="text-center font-weight-bold mt-4"><?= ucwords($user_info['fname'].' '.$user_info['lname']) ?></h3>
                     <ul class="mt-4">
@@ -89,8 +89,19 @@
                         </div>
                       </li>
                     </ul>
+                    <div class="row">
+                      <form action="data-insert.php" enctype="multipart/form-data" method="POST">
+                        <label for="">Changes Profile Pictute </label>
+                        <input type="hidden" name="id" value="<?= $user_info['id'] ?>">
+                        <div class="input-group col-xs-12">
+                          <input type="file" name="image" class="form-control">
+                          <span class="input-group-append">
+                            <button class="file-upload-browse btn btn-primary" name="upload_picture" type="submit">Upload</button>
+                          </span>
+                        </div>
+                      </form>
+                    </div>
                   </div>
-                  
                 </div>
               </div>
               <div class="col-md-4 stretch-card grid-margin">

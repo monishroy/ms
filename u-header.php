@@ -164,7 +164,7 @@ $user_info = mysqli_fetch_assoc($data);
                 data-toggle="dropdown"
                 id="profileDropdown"
               >
-                <img src="images/faces/default_profile.png" alt="profile" />
+                <img src="images/user/<?= $user_info['image'] ?>" alt="profile" />
               </a>
               <div
                 class="dropdown-menu dropdown-menu-right navbar-dropdown"

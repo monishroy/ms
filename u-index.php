@@ -23,16 +23,28 @@
                 </div>
               </div>
             </div>
+            <?php
+            $user_id = $user_info['id'];
+            $message = mysqli_query($con, "SELECT * FROM `message` WHERE `user_id` = '$user_id'");
+            $count_message = mysqli_num_rows($message);
 
+            $phone = $user_info['phone'];
+            $students = mysqli_query($con, "SELECT * FROM `students` WHERE `phone` = '$phone'");
+            $count_students = mysqli_num_rows($students);
+            if($count_students == 0){
+              $complete_profile = '55%';
+            }else{
+              $complete_profile = '98%';
+            }
+            ?>
             <div class="row">
               <div class="col-md-6 grid-margin transparent">
                 <div class="row">
                   <div class="col-md-6 mb-4">
                     <div class="card card-tale">
                       <div class="card-body">
-                        <p class="mb-4">Total Students</p>
-                        <p class="fs-30 mb-2">4006</p>
-                        <p>10.00% (30 days)</p>
+                        <p class="mb-4">Complete Profile</p>
+                        <p class="fs-30 mb-2"><?= $complete_profile ?></p>
                       </div>
                     </div>
                   </div>
@@ -41,16 +53,14 @@
                       <div class="card-body">
                         <p class="mb-4">Total Bookings</p>
                         <p class="fs-30 mb-2">61344</p>
-                        <p>22.00% (30 days)</p>
                       </div>
                     </div>
                   </div>
                   <div class="col-md-6 mb-4 ">
                     <div class="card card-light-blue">
                       <div class="card-body">
-                        <p class="mb-4">Total Bookings</p>
-                        <p class="fs-30 mb-2">61344</p>
-                        <p>22.00% (30 days)</p>
+                        <p class="mb-4">Total Message</p>
+                        <p class="fs-30 mb-2"><?= $count_message ?></p>
                       </div>
                     </div>
                   </div>
@@ -59,7 +69,6 @@
                       <div class="card-body">
                         <p class="mb-4">Total Bookings</p>
                         <p class="fs-30 mb-2">61344</p>
-                        <p>22.00% (30 days)</p>
                       </div>
                     </div>
                   </div>
@@ -92,11 +101,11 @@
                       <input type="hidden" name="user_id" value="<?= $user_info['id'] ?>">
                       <div class="form-group">
                         <label for="Subject">Subject</label>
-                        <input type="text" class="form-control" id="Subject" autocomplete="off" name="subject" placeholder="Subject">
+                        <input type="text" class="form-control" id="Subject" autocomplete="off" name="subject" placeholder="Subject" required>
                       </div>
                       <div class="form-group">
                         <label for="exampleTextarea1">Message</label>
-                        <textarea class="form-control"  name="message" id="exampleTextarea1" rows="4"></textarea>
+                        <textarea class="form-control"  name="message" id="exampleTextarea1" rows="4" required></textarea>
                       </div>
                       <button type="submit" name="send_message" class="btn btn-primary mr-2">Send Message</button>
                       <button type="reset" class="btn btn-light">Cancel</button>

@@ -162,7 +162,7 @@ $admin_info = mysqli_fetch_assoc($data);
                 data-toggle="dropdown"
                 id="profileDropdown"
               >
-                <img src="images/faces/default_profile.png" alt="profile" />
+                <img src="images/user/default.png" alt="profile" />
               </a>
               <div
                 class="dropdown-menu dropdown-menu-right navbar-dropdown"
@@ -208,6 +208,12 @@ $admin_info = mysqli_fetch_assoc($data);
               <a class="nav-link" href="students.php">
                 <i class="icon-head menu-icon"></i>
                 <span class="menu-title">Students</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="users.php">
+                <i class="icon-head menu-icon"></i>
+                <span class="menu-title">Users</span>
               </a>
             </li>
             <li class="nav-item">

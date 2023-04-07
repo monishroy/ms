@@ -1,5 +1,5 @@
         <?php
-          $title = 'Students';
+          $title = 'Message';
           require ('header.php');
         ?>
         <!-- partial -->

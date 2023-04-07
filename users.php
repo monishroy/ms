@@ -1,40 +1,18 @@
         <?php
-          $title = 'Students';
+          $title = 'Users';
           require ('header.php');
         ?>
         <!-- partial -->
         <div class="main-panel">
           <div class="content-wrapper">
-            <div class="row">
-              <div class="col-md-12 grid-margin">
-                <div class="row">
-                  <div class="col-12 col-xl-8 mb-4 mb-xl-0">
-                    <h3 class="font-weight-bold">Students</h3>
-                  </div>
-                  <div class="col-12 col-xl-4">
-                    <div class="justify-content-end d-flex">
-                      <div class="dropdown flex-md-grow-1 flex-xl-grow-0">
-                        <button
-                          class="btn btn-sm btn-light bg-white"
-                          type="button"
-                        >
-                          <i class="mdi mdi-calendar"></i> Today (<?= date('d M Y') ?>)
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            
 
             <div class="row">
               <div class="col-md-12 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
                     <div class="d-flex justify-content-between">
-                      <a class="btn btn-primary mb-3" href="add_student.php"
-                        >Add Student</a
-                      >
+                    <h3 class="font-weight-bold">Users</h3>
                       <div class="row mb-3">
                         <form class="d-flex justify-content-end">
                           <a class="btn btn-primary mx-3" href="">Print</a>
@@ -64,12 +42,9 @@
                             <thead>
                               <tr>
                                 <th>#</th>
-                                <th></th>
                                 <th>Name</th>
-                                <th>Roll</th>
+                                <th>Email</th>
                                 <th>Phone</th>
-                                <th>Session</th>
-                                <th>Dipartment</th>
                                 <th>Status</th>
                                 <th>Action</th>
                               </tr>
@@ -77,34 +52,14 @@
                             <tbody>
                               <?php
                               $sl = 1;
-                              $result = mysqli_query($con, "SELECT * FROM `students` ORDER BY `id` desc");
+                              $result = mysqli_query($con, "SELECT * FROM `user` ORDER BY `id` desc");
                               while($row=mysqli_fetch_assoc($result)){
-                                $session = $row['session'];
-                                $res = mysqli_query($con, "SELECT * FROM `session` WHERE `id` = '$session'");
-                                $session_data = mysqli_fetch_assoc($res);
-
-                                $department = $row['department'];
-                                $res = mysqli_query($con, "SELECT * FROM `department` WHERE `id` = '$department'");
-                                $department_data = mysqli_fetch_assoc($res);
-
-                                $company = $row['company'];
-                                $res = mysqli_query($con, "SELECT * FROM `company` WHERE `id` = '$company'");
-                                $company_data = mysqli_fetch_assoc($res);
-
-                                $phone = $row['phone'];
-                                $res = mysqli_query($con, "SELECT * FROM `user` WHERE `phone` = '$phone'");
-                                $user_data = mysqli_fetch_assoc($res);
                                 ?>
                                 <tr>
                                   <td><?= $sl ?></td>
-                                  <td>
-                                  <img src="images/user/<?= $user_data['image'] ?>" style="max-height: 50px;" alt="profile" />
-                                  </td>
                                   <td><?= ucwords($row['fname'].' '.$row['lname']) ?></td>
-                                  <td><?= $row['roll'] ?></td>
+                                  <td><?= $row['email'] ?></td>
                                   <td><?= $row['phone'] ?></td>
-                                  <td><?= $session_data['name'] ?></td>
-                                  <td><?= $department_data['name'] ?></td>
                                   <td>
                                     <?php
                                       if($row['status'] == 1){
@@ -119,7 +74,6 @@
                                     ?>
                                   </td>
                                   <td>
-                                    <a class="text-info fs-5" href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#studentView-<?= $row['id'] ?>"><i class='bx bx-show'></i></a>
                                     <a class="text-warning fs-5" href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#studentEdit-<?= $row['id'] ?>"><i class='bx bx-edit'></i></a>
                                     <a class="text-danger fs-5 lh-1" onclick="return confirm('Are you sure to delete ?')" href="delete.php?student=<?= $row['id'] ?>"><i class='bx bx-trash' ></i></a>
                                   </td>

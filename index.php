@@ -32,6 +32,9 @@
 
             $user = mysqli_query($con, "SELECT * FROM `user`");
             $tatal_user = mysqli_num_rows($user);
+
+            $message = mysqli_query($con, "SELECT * FROM `message` WHERE `status` = '1'");
+            $tatal_message = mysqli_num_rows($message);
             ?>
             <div class="row">
               <div class="col-md-12 grid-margin transparent">
@@ -63,8 +66,8 @@
                   <div class="col-md-3 mb-4 stretch-card transparent">
                     <div class="card card-light-danger">
                       <div class="card-body">
-                        <p class="mb-4">Total Bookings</p>
-                        <p class="fs-30 mb-2">61344</p>
+                        <p class="mb-4">Total Pandding Message</p>
+                        <p class="fs-30 mb-2"><?= $tatal_message ?></p>
                       </div>
                     </div>
                   </div>
