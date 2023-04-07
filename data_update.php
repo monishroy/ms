@@ -54,6 +54,33 @@ if(isset($_POST['update_profile'])){
   }
 }
 
+//Update User Admin Panel
+if(isset($_POST['update_user'])){
+  
+  $id = get_safe_value($con,$_POST['id']);
+  $fname = get_safe_value($con, $_POST['fname']);
+  $lname = get_safe_value($con, $_POST['lname']);
+  $email = get_safe_value($con, $_POST['email']);
+  $phone = get_safe_value($con, $_POST['phone']);
+  $password = get_safe_value($con, $_POST['password']);
+
+  if(empty($password)){
+  $result = mysqli_query($con, "UPDATE `user` SET `fname`='$fname',`lname`='$lname',`email`='$email',`phone`='$phone' WHERE `id` = '$id'");
+  }else{
+    $password_hash = password_hash($password, PASSWORD_DEFAULT);
+    $result = mysqli_query($con, "UPDATE `user` SET `fname`='$fname',`lname`='$lname',`email`='$email',`phone`='$phone',`password`='$password_hash' WHERE `id` = '$id'");
+  }
+  if($result){
+    $_SESSION['user-success'] = "Update Successfully";
+    header('location: users.php');
+    exit(0);
+  }else{
+    $_SESSION['user-error'] = "Something is Worng";
+    header('location: users.php');
+    exit(0);
+  }
+}
+
 //Update Department
 if(isset($_POST['update_department'])){
   $department_name = get_safe_value($con,$_POST['department_name']);
@@ -120,5 +147,37 @@ if(isset($_POST['message_replay'])){
     header('location: a-message.php');
     exit(0);
   }
+}
+
+//Update Profile Picture
+if(isset($_POST['upload_picture'])){
+  $id = get_safe_value($con,$_POST['id']);
+  $phone = get_safe_value($con,$_POST['phone']);
+  
+  $image_size = $_FILES['image']['size'];
+  if($image_size < 819200){
+
+      $image = explode('.',$_FILES['image']['name']);
+      $image_ext = end($image);
+      $image = date('Ymdhis.').$image_ext;
+
+      $result = mysqli_query($con, "UPDATE `user` SET `image`='$image' WHERE `id` = '$id'");
+      $result = mysqli_query($con, "UPDATE `students` SET `image`='$image' WHERE `phone` = '$phone'");
+      if($result){
+          move_uploaded_file($_FILES['image']['tmp_name'],'images/user/'.$image);
+          $_SESSION['profile-success'] = "Profile Picture Changed";
+          header('location: profile.php');
+          exit(0);
+      }else{
+          $_SESSION['profile-error'] = "Something is Worng";
+          header('location: profile.php');
+          exit(0);
+      }
+  }else{
+      $_SESSION['profile-error'] = "Please Enter 800KB image !";
+      header('location: profile.php');
+      exit(0);
+  }
+
 }
 ?>

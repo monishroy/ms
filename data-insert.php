@@ -115,33 +115,4 @@ if(isset($_POST['send_message'])){
     
 }
 
-//Upload Profile Picture
-if(isset($_POST['upload_picture'])){
-    $id = get_safe_value($con,$_POST['id']);
-    
-    $image_size = $_FILES['image']['size'];
-    if($image_size < 819200){
-
-        $image = explode('.',$_FILES['image']['name']);
-        $image_ext = end($image);
-        $image = date('Ymdhis.').$image_ext;
-
-        $result = mysqli_query($con, "UPDATE `user` SET `image`='$image' WHERE `id` = '$id'");
-        if($result){
-            move_uploaded_file($_FILES['image']['tmp_name'],'images/user/'.$image);
-            $_SESSION['message-success'] = "Send Successfully";
-            header('location: profile.php');
-            exit(0);
-        }else{
-            $_SESSION['message-error'] = "Something is Worng";
-            header('location: profile.php');
-            exit(0);
-        }
-    }else{
-        $_SESSION['message-error'] = "Please Enter 800KB image !";
-        header('location: profile.php');
-        exit(0);
-    }
-
-}
 ?>

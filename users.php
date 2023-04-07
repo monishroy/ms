@@ -42,9 +42,11 @@
                             <thead>
                               <tr>
                                 <th>#</th>
+                                <th></th>
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Phone</th>
+                                <th>User Type</th>
                                 <th>Status</th>
                                 <th>Action</th>
                               </tr>
@@ -57,25 +59,41 @@
                                 ?>
                                 <tr>
                                   <td><?= $sl ?></td>
+                                  <td>
+                                    <img src="images/user/<?= $row['image'] ?>" style="max-height: 50px; border-radius: 50%;" alt="profile" />
+                                  </td>
                                   <td><?= ucwords($row['fname'].' '.$row['lname']) ?></td>
                                   <td><?= $row['email'] ?></td>
                                   <td><?= $row['phone'] ?></td>
                                   <td>
                                     <?php
-                                      if($row['status'] == 1){
+                                      if($row['user_type'] == 1){
                                         ?>
-                                        <a class="badge badge-success" href="status-update.php?activeStudent=<?= $row['id'] ?>">Active</a>
+                                        <a class="badge badge-primary" href="status-update.php?activeUserType=<?= $row['id'] ?>">Admin</a>
                                         <?php
                                       }else{
                                         ?>
-                                        <a  class="badge badge-danger" href="status-update.php?deactiveStudent=<?= $row['id'] ?>">Deactive</a>
+                                        <a  class="badge badge-info" href="status-update.php?deactiveUserType=<?= $row['id'] ?>">User</a>
                                         <?php
                                       }
                                     ?>
                                   </td>
                                   <td>
-                                    <a class="text-warning fs-5" href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#studentEdit-<?= $row['id'] ?>"><i class='bx bx-edit'></i></a>
-                                    <a class="text-danger fs-5 lh-1" onclick="return confirm('Are you sure to delete ?')" href="delete.php?student=<?= $row['id'] ?>"><i class='bx bx-trash' ></i></a>
+                                    <?php
+                                      if($row['status'] == 1){
+                                        ?>
+                                        <a class="badge badge-success" href="status-update.php?activeUser=<?= $row['id'] ?>">Active</a>
+                                        <?php
+                                      }else{
+                                        ?>
+                                        <a  class="badge badge-danger" href="status-update.php?deactiveUser=<?= $row['id'] ?>">Deactive</a>
+                                        <?php
+                                      }
+                                    ?>
+                                  </td>
+                                  <td>
+                                    <a class="text-warning fs-5" href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#userEdit-<?= $row['id'] ?>"><i class='bx bx-edit'></i></a>
+                                    <a class="text-danger fs-5 lh-1" onclick="return confirm('Are you sure to delete ?')" href="delete.php?user=<?= $row['id'] ?>"><i class='bx bx-trash' ></i></a>
                                   </td>
                                 </tr>
                                 <?php
@@ -95,21 +113,21 @@
           <!-- content-wrapper ends -->
 
           <?php
-          $result = mysqli_query($con, "SELECT * FROM `students`");
+          $result = mysqli_query($con, "SELECT * FROM `user`");
           while($row=mysqli_fetch_assoc($result)){
             ?>
-            <div class="modal fade" id="studentEdit-<?= $row['id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div class="modal-dialog modal-xl">
+            <div class="modal fade" id="userEdit-<?= $row['id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Edit Student</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Edit User</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <form class="forms-sample" action="data_update.php" method="POST">
                     <div class="modal-body">
                       <div class="row">
                         <input type="hidden" name="id" value="<?= $row['id'] ?>">
-                        <div class="col-12 col-lg-4">
+                        <div class="col-6">
                           <div class="form-group">
                             <label for="first-name">First Name</label>
                             <input
@@ -122,7 +140,7 @@
                             />
                           </div>
                         </div>
-                        <div class="col-12 col-lg-4">
+                        <div class="col-6">
                           <div class="form-group">
                             <label for="last-name">Last Name</label>
                             <input
@@ -135,7 +153,7 @@
                             />
                           </div>
                         </div>
-                        <div class="col-12 col-lg-4">
+                        <div class="col-12">
                           <div class="form-group">
                             <label for="email">Email address</label>
                             <input
@@ -148,87 +166,8 @@
                             />
                           </div>
                         </div>
-                        <div class="col-12 col-lg-4">
-                          <div class="form-group">
-                            <label for="department">Department</label>
-                            <select
-                              class="form-control"
-                              id="department"
-                              name="department"
-                            >
-                              <option value="0">Select Department</option>
-                              <?php
-                                $department_id = $row['department'];
-                                $data = mysqli_query($con, "SELECT * FROM `department`");
-                                while($department=mysqli_fetch_assoc($data)){
-                                  if($department['id'] == $department_id){
-                                    ?>
-                                    <option selected="" value="<?= $department['id'] ?>"><?= $department['name'] ?></option>
-                                    <?php
-                                  }else{
-                                    ?>
-                                    <option value="<?= $department['id'] ?>"><?= $department['name'] ?></option>
-                                    <?php
-                                  }
-                                }
-                              ?>
-                            </select>
-                          </div>
-                        </div>
-                        <div class="col-12 col-lg-4">
-                          <div class="form-group">
-                            <label for="roll">Roll</label>
-                            <input
-                              type="number"
-                              class="form-control"
-                              id="roll"
-                              name="roll"
-                              placeholder="First Name"
-                              value="<?= $row['roll'] ?>"
-                            />
-                          </div>
-                        </div>
-                        <div class="col-12 col-lg-4">
-                          <div class="form-group">
-                            <label for="registration">Registration</label>
-                            <input
-                              type="number"
-                              class="form-control"
-                              id="registration"
-                              name="reg"
-                              placeholder="Registration"
-                              value="<?= $row['registration'] ?>"
-                            />
-                          </div>
-                        </div>
-                        <div class="col-12 col-lg-4">
-                          <div class="form-group">
-                            <label for="session">Session</label>
-                            <select
-                              class="form-control"
-                              id="session"
-                              name="session"
-                            >
-                              <option value="0">Select Session</option>
-                              <?php
-                              $session_id = $row['session'];
-                              $data = mysqli_query($con, "SELECT * FROM `session`");
-                              while($session=mysqli_fetch_assoc($data)){
-                                if($session['id'] == $session_id){
-                                  ?>
-                                  <option selected="" value="<?= $session['id'] ?>"><?= $session['name'] ?></option>
-                                  <?php
-                                }else{
-                                  ?>
-                                  <option value="<?= $session['id'] ?>"><?= $session['name'] ?></option>
-                                  <?php
-                                }
-                              }
-                              ?>
-                            </select>
-                          </div>
-                        </div>
-                        <div class="col-12 col-lg-4">
+                        
+                        <div class="col-12">
                           <div class="form-group">
                             <label for="phone-number">Phone Number</label>
                             <input
@@ -241,38 +180,23 @@
                             />
                           </div>
                         </div>
-                        <div class="col-12 col-lg-4">
+                        <div class="col-12">
                           <div class="form-group">
-                            <label for="company-name">Company Name</label>
-                            <select
+                            <label for="password">Password</label>
+                            <input
+                              type="text"
                               class="form-control"
-                              id="company-name"
-                              name="company"
-                            >
-                              <option value="0">Select Company</option>
-                              <?php
-                                $company_id = $row['company'];
-                                $data = mysqli_query($con, "SELECT * FROM `company`");
-                                while($company=mysqli_fetch_assoc($data)){
-                                  if($company['id'] == $company_id){
-                                    ?>
-                                    <option selected="" value="<?= $company['id'] ?>"><?= $company['name'] ?></option>
-                                    <?php
-                                  }else{
-                                    ?>
-                                    <option value="<?= $company['id'] ?>"><?= $company['name'] ?></option>
-                                    <?php
-                                  }
-                                }
-                              ?>
-                            </select>
+                              id="password"
+                              name="password"
+                              placeholder="Password"
+                            />
                           </div>
                         </div>
                       </div>
                     </div>
                     <div class="modal-footer">
                       <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                      <button type="submit" name="update_student" class="btn btn-primary">Save changes</button>
+                      <button type="submit" name="update_user" class="btn btn-primary">Save changes</button>
                     </form>
                     </div>
                 </div>
@@ -440,29 +364,29 @@
           ?>
           <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
           <?php
-            if(isset($_SESSION['student-success'])){
+            if(isset($_SESSION['user-success'])){
               ?>
               <script>
                 swal({
-                  title: "<?= $_SESSION['student-success']; ?>",
+                  title: "<?= $_SESSION['user-success']; ?>",
                   text: "Thank you",
                   icon: "success",
                 });
               </script>
               <?php
-              unset($_SESSION['student-success']);
+              unset($_SESSION['user-success']);
             }
-            if(isset($_SESSION['student-error'])){
+            if(isset($_SESSION['user-error'])){
               ?>
               <script>
                 swal({
-                  title: "<?= $_SESSION['student-error']; ?>",
+                  title: "<?= $_SESSION['user-error']; ?>",
                   text: "Please Try Again",
                   icon: "error",
                 });
               </script>
               <?php
-              unset($_SESSION['student-error']);
+              unset($_SESSION['user-error']);
             }
           ?>
           <?php

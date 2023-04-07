@@ -85,7 +85,7 @@
                         $phone_check_row = mysqli_num_rows($phone_check);
 
                         if($phone_check_row == 0) {
-                          $result = mysqli_query($con, "INSERT INTO `students`(`fname`, `lname`, `email`, `phone`, `roll`, `registration`, `session`, `department`, `company`, `status`) VALUES ('$fname','$lname','$email','$phone','$roll','$reg','$session','$department','$company','1')");
+                          $result = mysqli_query($con, "INSERT INTO `students`(`fname`, `lname`, `image`, `email`, `phone`, `roll`, `registration`, `session`, `department`, `company`, `status`) VALUES ('$fname','$lname','default.png','$email','$phone','$roll','$reg','$session','$department','$company','1')");
                           if($result){
                             $success = "Add Details Successfully !";
                           }else{

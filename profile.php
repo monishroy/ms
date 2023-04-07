@@ -19,6 +19,24 @@
               <div class="col-md-4 stretch-card grid-margin">
                 <div class="card">
                   <div class="card-body">
+                    <?php
+                      if(isset($_SESSION['profile-success'])){
+                        ?>
+                        <div class="alert alert-success" role="alert">
+                          <?= $_SESSION['profile-success']; ?>
+                        </div>
+                        <?php
+                        unset($_SESSION['profile-success']);
+                      }
+                      if(isset($_SESSION['profile-error'])){
+                        ?>
+                        <div class="alert alert-danger" role="alert">
+                          <?= $_SESSION['profile-error']; ?>
+                        </div>
+                        <?php
+                        unset($_SESSION['profile-error']);
+                      }
+                    ?>
                     <div class="d-flex justify-content-center">
                       <img class="rounded border border-5" src="images/user/<?= $user_info['image'] ?>" style="max-height: 130px;" alt="">
                     </div>
@@ -90,9 +108,10 @@
                       </li>
                     </ul>
                     <div class="row">
-                      <form action="data-insert.php" enctype="multipart/form-data" method="POST">
+                      <form action="data_update.php" enctype="multipart/form-data" method="POST">
                         <label for="">Changes Profile Pictute </label>
                         <input type="hidden" name="id" value="<?= $user_info['id'] ?>">
+                        <input type="hidden" name="phone" value="<?= $user_info['phone'] ?>">
                         <div class="input-group col-xs-12">
                           <input type="file" name="image" class="form-control">
                           <span class="input-group-append">

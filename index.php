@@ -76,7 +76,7 @@
             </div>
 
             <div class="row">
-              <div class="col-md-12 grid-margin stretch-card">
+              <div class="col-md-6 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
                     <p class="card-title">Recent Students Added</p>
@@ -84,7 +84,7 @@
                       <div class="col-12">
                         <div class="table-responsive">
                         <table
-                            id="example"
+                            
                             class="display expandable-table"
                             style="width: 100%"
                           >
@@ -93,12 +93,9 @@
                                 <th>#</th>
                                 <th>Name</th>
                                 <th>Roll</th>
-                                <th>Registration</th>
                                 <th>Phone</th>
                                 <th>Session</th>
                                 <th>Dipartment</th>
-                                <th>Company</th>
-                                <th>Status</th>
                                 <th>Added On</th>
                               </tr>
                             </thead>
@@ -114,34 +111,61 @@
                                 $department = $row['department'];
                                 $res = mysqli_query($con, "SELECT * FROM `department` WHERE `id` = '$department'");
                                 $department_data = mysqli_fetch_assoc($res);
-
-                                $company = $row['company'];
-                                $res = mysqli_query($con, "SELECT * FROM `company` WHERE `id` = '$company'");
-                                $company_data = mysqli_fetch_assoc($res);
-
                                 ?>
                                 <tr>
                                   <td><?= $sl ?></td>
                                   <td><?= ucwords($row['fname'].' '.$row['lname']) ?></td>
                                   <td><?= $row['roll'] ?></td>
-                                  <td><?= $row['registration'] ?></td>
                                   <td><?= $row['phone'] ?></td>
                                   <td><?= $session_data['name'] ?></td>
                                   <td><?= $department_data['name'] ?></td>
-                                  <td><?= $company_data['name'] ?></td>
-                                  <td>
-                                    <?php
-                                      if($row['status'] == 1){
-                                        ?>
-                                        <a class="badge badge-success" href="status-update.php?activeStudent=<?= $row['id'] ?>">Active</a>
-                                        <?php
-                                      }else{
-                                        ?>
-                                        <a  class="badge badge-danger" href="status-update.php?deactiveStudent=<?= $row['id'] ?>">Deactive</a>
-                                        <?php
-                                      }
-                                    ?>
-                                  </td>
+                                  
+                                  <td><?= date('d M Y', strtotime($row['datetime'])) ?></td>
+                                </tr>
+                                <?php
+                                $sl++;
+                              }
+                              ?>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <p class="card-title">Recent User Added</p>
+                    <div class="row">
+                      <div class="col-12">
+                        <div class="table-responsive">
+                        <table
+                            class="display expandable-table"
+                            style="width: 100%"
+                          >
+                            <thead>
+                              <tr>
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Added On</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <?php
+                              $sl = 1;
+                              $result = mysqli_query($con, "SELECT * FROM `user` ORDER BY `id` desc LIMIT 7");
+                              while($row=mysqli_fetch_assoc($result)){
+                                ?>
+                                <tr>
+                                  <td><?= $sl ?></td>
+                                  <td><?= ucwords($row['fname'].' '.$row['lname']) ?></td>
+                                  <td><?= $row['email'] ?></td>
+                                  <td><?= $row['phone'] ?></td>
+                                  
                                   <td><?= date('d M Y', strtotime($row['datetime'])) ?></td>
                                 </tr>
                                 <?php

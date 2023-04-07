@@ -82,4 +82,20 @@ if(isset($_GET['message'])){
     exit(0);
   }
 }
+
+//User Delete
+if(isset($_GET['user'])){
+  $id = get_safe_value($con,$_GET['user']);
+
+  $result = mysqli_query($con, "DELETE FROM `user` WHERE `id` = '$id'");
+  if($result){
+    $_SESSION['user-success'] = "Delete Successfully";
+    header('location: users.php');
+    exit(0);
+  }else{
+    $_SESSION['user-error'] = "Something is Worng";
+    header('location: users.php');
+    exit(0);
+  }
+}
 ?>

@@ -34,7 +34,6 @@ if(isset($_POST['register'])){
     $input_errors['password'] = " field is required!";
   }
 
-
   if (count($input_errors) == 0) {
     $email_check = mysqli_query($con, "SELECT * FROM `user` WHERE `email` = '$email'");
     $email_check_row = mysqli_num_rows($email_check);

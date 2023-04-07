@@ -90,15 +90,11 @@
                                 $company = $row['company'];
                                 $res = mysqli_query($con, "SELECT * FROM `company` WHERE `id` = '$company'");
                                 $company_data = mysqli_fetch_assoc($res);
-
-                                $phone = $row['phone'];
-                                $res = mysqli_query($con, "SELECT * FROM `user` WHERE `phone` = '$phone'");
-                                $user_data = mysqli_fetch_assoc($res);
                                 ?>
                                 <tr>
                                   <td><?= $sl ?></td>
                                   <td>
-                                  <img src="images/user/<?= $user_data['image'] ?>" style="max-height: 50px;" alt="profile" />
+                                    <img src="images/user/<?= $row['image'] ?>" style="max-height: 50px; border-radius: 50%;" alt="profile" />
                                   </td>
                                   <td><?= ucwords($row['fname'].' '.$row['lname']) ?></td>
                                   <td><?= $row['roll'] ?></td>

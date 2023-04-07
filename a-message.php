@@ -43,11 +43,10 @@
                               <tr>
                                 <th>#</th>
                                 <th>Name</th>
-                                <th>Roll</th>
+                                <th>Email</th>
                                 <th>Phone</th>
                                 <th>Subject</th>
                                 <th>Message</th>
-                                <th>Dipartment</th>
                                 <th>Action</th>
                               </tr>
                             </thead>
@@ -60,22 +59,14 @@
                                 $res = mysqli_query($con, "SELECT * FROM `user` WHERE `id` = '$user_id'");
                                 $user_data = mysqli_fetch_assoc($res);
 
-                                $phone = $user_data['phone'];
-                                $res = mysqli_query($con, "SELECT * FROM `students` WHERE `phone` = '$phone'");
-                                $student_data = mysqli_fetch_assoc($res);
-
-                                $department = $student_data['department'];
-                                $res = mysqli_query($con, "SELECT * FROM `department` WHERE `id` = '$department'");
-                                $department_data = mysqli_fetch_assoc($res);
                                 ?>
                                 <tr>
                                   <td><?= $sl ?></td>
-                                  <td><?= ucwords($student_data['fname'].' '.$student_data['lname']) ?></td>
-                                  <td><?= $student_data['roll'] ?></td>
+                                  <td><?= ucwords($user_data['fname'].' '.$user_data['lname']) ?></td>
+                                  <td><?= $user_data['email'] ?></td>
                                   <td><?= $user_data['phone'] ?></td>
                                   <td><?= $row['subject'] ?></td>
                                   <td><?= $row['message'] ?></td>
-                                  <td><?= $department_data['name'] ?></td>
                                   <td>
                                     <a class="text-info fs-5" href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#messageReplay-<?= $row['id'] ?>"><i class='bx bx-reply'></i></a>
                                     <a class="text-danger fs-5 lh-1" onclick="return confirm('Are you sure to delete ?')" href="delete.php?message=<?= $row['id'] ?>"><i class='bx bx-trash' ></i></a>
