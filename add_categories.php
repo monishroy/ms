@@ -273,16 +273,19 @@
                     <h5 class="modal-title" id="exampleModalLabel">Edit Department</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
-                  <div class="modal-body">
-                    <div class="form-group">
-                      <label for="department_name">Department Name</label>
-                      <input type="text" class="form-control" id="department_name" name="department_name" placeholder="Department Name" required="" value="<?= $row['name'] ?>">
+                  <form action="data_update.php" method="POST">
+                    <div class="modal-body">
+                      <div class="form-group">
+                        <label for="department_name">Department Name</label>
+                        <input type="text" class="form-control" id="department_name" name="department_name" placeholder="Department Name" required="" value="<?= $row['name'] ?>">
+                      </div>
+                      <input type="hidden" name="id" value="<?= $row['id'] ?>">
                     </div>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                  </div>
+                    <div class="modal-footer">
+                      <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      <button type="submit" name="update_department" class="btn btn-primary">Save changes</button>
+                    </div>
+                  </form>
                 </div>
               </div>
             </div>
@@ -300,16 +303,19 @@
                     <h5 class="modal-title" id="exampleModalLabel">Edit Session</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
-                  <div class="modal-body">
-                    <div class="form-group">
-                      <label for="department_name">Session Name</label>
-                      <input type="text" class="form-control" id="department_name" name="department_name" placeholder="Department Name" required="" value="<?= $row['name'] ?>">
+                  <form action="data_update.php" method="POST">
+                    <div class="modal-body">
+                      <div class="form-group">
+                        <label for="session_name">Session Name</label>
+                        <input type="text" class="form-control" id="session_name" name="session_name" placeholder="Session Name" required="" value="<?= $row['name'] ?>">
+                      </div>
+                      <input type="hidden" name="id" value="<?= $row['id'] ?>">
                     </div>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                  </div>
+                    <div class="modal-footer">
+                      <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      <button type="submit" name="update_session" class="btn btn-primary">Save changes</button>
+                    </div>
+                  </form>
                 </div>
               </div>
             </div>
@@ -327,16 +333,19 @@
                     <h5 class="modal-title" id="exampleModalLabel">Edit Company</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
-                  <div class="modal-body">
-                    <div class="form-group">
-                      <label for="department_name">Company Name</label>
-                      <input type="text" class="form-control" id="department_name" name="department_name" placeholder="Department Name" required="" value="<?= $row['name'] ?>">
+                  <form action="data_update.php" method="POST">
+                    <div class="modal-body">
+                      <div class="form-group">
+                        <label for="company_name">Company Name</label>
+                        <input type="text" class="form-control" id="company_name" name="company_name" placeholder="Company Name" required="" value="<?= $row['name'] ?>">
+                      </div>
+                      <input type="hidden" name="id" value="<?= $row['id'] ?>">
                     </div>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                  </div>
+                    <div class="modal-footer">
+                      <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      <button type="submit" name="update_company" class="btn btn-primary">Save changes</button>
+                    </div>
+                  </form>
                 </div>
               </div>
             </div>

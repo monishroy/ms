@@ -28,15 +28,15 @@
             </div>
             <?php
               if(isset($_POST['add_student'])){
-                $fname = trim($_POST['fname']);
-                $lname = trim($_POST['lname']);
-                $email = trim($_POST['email']);
-                $department = trim($_POST['department']);
-                $roll = trim($_POST['roll']);
-                $reg = trim($_POST['reg']);
-                $session = trim($_POST['session']);
-                $phone = trim($_POST['phone']);
-                $company = trim($_POST['company']);
+                $fname = get_safe_value($con, $_POST['fname']);
+                $lname = get_safe_value($con, $_POST['lname']);
+                $email = get_safe_value($con, $_POST['email']);
+                $department = get_safe_value($con, $_POST['department']);
+                $roll = get_safe_value($con, $_POST['roll']);
+                $reg = get_safe_value($con, $_POST['reg']);
+                $session = get_safe_value($con, $_POST['session']);
+                $phone = get_safe_value($con, $_POST['phone']);
+                $company = get_safe_value($con, $_POST['company']);
 
                 $input_errors = array();
 
@@ -49,7 +49,7 @@
                 if(empty($email)) {
                   $input_errors['email'] = "field is required!";
                 }
-                if(empty($department)) {
+                if($department == '0') {
                   $input_errors['department'] = "field is required!";
                 }
                 if(empty($roll)) {
@@ -58,13 +58,13 @@
                 if(empty($reg)) {
                   $input_errors['reg'] = "field is required!";
                 }
-                if(empty($session)) {
+                if($session == '0') {
                   $input_errors['session'] = "field is required!";
                 }
                 if(empty($phone)) {
                   $input_errors['phone'] = "field is required!";
                 }
-                if(empty($company)) {
+                if($company == '0') {
                   $input_errors['company'] = " field is required!";
                 }
 
@@ -268,18 +268,19 @@
               </div>
             </div>
           </div>
+
           <!-- content-wrapper ends -->
           <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
           <?php
           if(isset($success)){
             ?>
             <script>
-            swal({
-              title: "Student Add Successfully",
-              text: "Thank you",
-              icon: "success",
-            });
-          </script>
+              swal({
+                title: "<?= $success ?>",
+                text: "Thank you",
+                icon: "success",
+              });
+            </script>
             <?php
           }
           ?>

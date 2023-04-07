@@ -2,6 +2,22 @@
 require ('connection.inc.php');
 require ('functions.inc.php');
 
+//Student Delete
+if(isset($_GET['student'])){
+  $id = get_safe_value($con,$_GET['student']);
+
+  $result = mysqli_query($con, "DELETE FROM `students` WHERE `id` = '$id'");
+  if($result){
+    $_SESSION['student-success'] = "Delete Successfully";
+    header('location: students.php');
+    exit(0);
+  }else{
+    $_SESSION['student-error'] = "Something is Worng";
+    header('location: students.php');
+    exit(0);
+  }
+}
+
 //Department Delete
 if(isset($_GET['department'])){
     $id = get_safe_value($con,$_GET['department']);

@@ -54,10 +54,10 @@ $admin_info = mysqli_fetch_assoc($data);
           class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center"
         >
           <a class="navbar-brand brand-logo mr-5" href="index.php"
-            ><img src="images/logo.svg" class="mr-2" alt="logo"
+            ><img src="images/logo.png" class="mr-2" alt="logo"
           /></a>
           <a class="navbar-brand brand-logo-mini" href="index.php"
-            ><img src="images/logo-mini.svg" alt="logo"
+            ><img src="images/logo-mini.png" alt="logo"
           /></a>
         </div>
         <div
