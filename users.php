@@ -15,7 +15,7 @@
                     <h3 class="font-weight-bold">Users</h3>
                       <div class="row mb-3">
                         <form class="d-flex justify-content-end">
-                          <a class="btn btn-primary mx-3" href="">Print</a>
+                          <a class="btn btn-primary mx-3" target="_blank" href="print_user.php">Print</a>
                           <input
                             class="form-control rounded-pill me-2"
                             type="search"

@@ -123,66 +123,156 @@
                   </div>
                 </div>
               </div>
-              <div class="col-md-4 stretch-card grid-margin">
+              <div class="col-md-4">
                 <div class="row">
-                  <div class="col-md-12 grid-margin stretch-card">
-                    <div class="card">
-                      <div class="card-body">
-                        <p class="card-title">Charts</p>
-                        <div class="charts-data">
-                          <div class="mt-3">
-                            <p class="mb-0">Data 1</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                              <div class="progress progress-md flex-grow-1 mr-4">
-                                <div class="progress-bar bg-inf0" role="progressbar" style="width: 95%" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
-                              </div>
-                              <p class="mb-0">5k</p>
-                            </div>
-                          </div>
-                          <div class="mt-3">
-                            <p class="mb-0">Data 2</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                              <div class="progress progress-md flex-grow-1 mr-4">
-                                <div class="progress-bar bg-info" role="progressbar" style="width: 35%" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100"></div>
-                              </div>
-                              <p class="mb-0">1k</p>
-                            </div>
-                          </div>
-                          <div class="mt-3">
-                            <p class="mb-0">Data 3</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                              <div class="progress progress-md flex-grow-1 mr-4">
-                                <div class="progress-bar bg-info" role="progressbar" style="width: 48%" aria-valuenow="48" aria-valuemin="0" aria-valuemax="100"></div>
-                              </div>
-                              <p class="mb-0">992</p>
-                            </div>
-                          </div>
-                          <div class="mt-3">
-                            <p class="mb-0">Data 4</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                              <div class="progress progress-md flex-grow-1 mr-4">
-                                <div class="progress-bar bg-info" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                              </div>
-                              <p class="mb-0">687</p>
+                  <?php
+                    $user_id = $user_info['id'];
+                    $message = mysqli_query($con, "SELECT * FROM `message` WHERE `user_id` = '$user_id'");
+                    $count_message = mysqli_num_rows($message);
+
+                    $phone = $user_info['phone'];
+                    $students = mysqli_query($con, "SELECT * FROM `students` WHERE `phone` = '$phone'");
+                    $count_students = mysqli_num_rows($students);
+                    $student_info = mysqli_fetch_assoc($students);
+                    if($count_students != 0){
+                      ?>
+                      <div class="col-md-12 grid-margin stretch-card">
+                        <div class="card">
+                          <div class="card-body">
+                            <p class="card-title">More Details</p>
+                            <div class="charts-data">
+                              <ul class="mt-4">
+                                <li class=" font-weight-bold mb-3">
+                                  <div class="row">
+                                    <div class="col-3">
+                                      <h5>Roll </h5>
+                                    </div>
+                                    <div class="col-9">:  <?= $student_info['roll'] ?></div>
+                                  </div>
+                                </li>
+                                <li class="font-weight-bold mb-3">
+                                  <div class="row">
+                                    <div class="col-3">
+                                      <h5>Registration </h5>
+                                    </div>
+                                    <div class="col-9">:  <?= $student_info['registration'] ?></div>
+                                  </div>
+                                </li>
+                                <li class=" font-weight-bold mb-3">
+                                  <div class="row">
+                                    <div class="col-3">
+                                      <h5>Session </h5>
+                                    </div>
+                                    <div class="col-9">:
+                                      <?php
+                                        $session_id = $student_info['session'];
+                                        $data = mysqli_query($con, "SELECT * FROM `session`");
+                                        while($session=mysqli_fetch_assoc($data)){
+                                          if($session['id'] == $session_id){
+                                          $session = $session['name'];
+                                          echo "$session";
+                                          }
+                                        }
+                                      ?>
+                                    </div>
+                                  </div>
+                                </li>
+                                <li class=" font-weight-bold mb-3">
+                                  <div class="row">
+                                    <div class="col-3">
+                                      <h5>Department </h5>
+                                    </div>
+                                    <div class="col-9">:  
+                                      <?php
+                                        $department_id = $student_info['department'];
+                                        $data = mysqli_query($con, "SELECT * FROM `department`");
+                                        while($department=mysqli_fetch_assoc($data)){
+                                          if($department['id'] == $department_id){
+                                          $department = $department['name'];
+                                          echo "$department";
+                                          }
+                                        }
+                                      ?>
+                                    </div>
+                                  </div>
+                                </li>
+                                <li class=" font-weight-bold mb-3">
+                                  <div class="row">
+                                    <div class="col-3">
+                                      <h5>Company </h5>
+                                    </div>
+                                    <div class="col-9">:  
+                                      <?php
+                                        $company_id = $student_info['company'];
+                                        $data = mysqli_query($con, "SELECT * FROM `company`");
+                                        while($company=mysqli_fetch_assoc($data)){
+                                          if($company['id'] == $company_id){
+                                          $company = $company['name'];
+                                          echo "$company";
+                                          }
+                                        }
+                                      ?>
+                                    </div>
+                                  </div>
+                                </li>
+                              </ul>
                             </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                  </div>
-                  <div class="col-md-12 stretch-card grid-margin grid-margin-md-0">
-                    <div class="card data-icon-card-primary">
+                      <?php
+                    }else{
+                      
+                    }
+                  ?>
+                  
+                  <?php
+                    $user_id = $user_info['id'];
+                    $message = mysqli_query($con, "SELECT * FROM `message` WHERE `user_id` = '$user_id'");
+                    $count_message = mysqli_num_rows($message);
+
+                    $phone = $user_info['phone'];
+                    $students = mysqli_query($con, "SELECT * FROM `students` WHERE `phone` = '$phone'");
+                    $count_students = mysqli_num_rows($students);
+                    $student_info = mysqli_fetch_assoc($students);
+                    if(isset($student_info)){
+                      $student_image = $student_info['image'];
+                    }
+                    if($count_students == 0){
+                      $complete_profile = '55';
+                    }elseif($student_image == 'default.png'){
+                      $complete_profile = '95';
+                    }else{
+                      $complete_profile = '100';
+                    }
+                  ?>
+                  <div class="col-md-12 stretch-card grid-margin">
+                    <div class="card data-icon-card-<?php
+                              if($complete_profile < 56){
+                                echo 'primary';
+                              }elseif($complete_profile < 96){
+                                echo 'warning';
+                              }else{
+                                echo 'success';
+                              }
+                              ?>">
                       <div class="card-body">
-                        <p class="card-title text-white">Number of Meetings</p>
+                        <p class="card-title text-white">Profile Complete</p>
                         <div class="row">
                           <div class="col-8 text-white">
-                            <h3>34040</h3>
+                            <h3><?= $complete_profile ?>%</h3>
                             <p class="text-white font-weight-500 mb-0">
-                              The total number of sessions within the date
-                              range.It is calculated as the sum .
+                              <?php
+                              if($complete_profile < 56){
+                                echo 'Please Update your Profile.';
+                              }elseif($complete_profile < 96){
+                                echo 'All Most complete your Profile. Set your Profile Picture.';
+                              }else{
+                                echo 'Thanks, Complete Your Profile.';
+                              }
+                              ?>
                             </p>
                           </div>
-                          <div class="col-4 background-icon"></div>
                         </div>
                       </div>
                     </div>
@@ -196,57 +286,24 @@
                     <ul class="icon-data-list">
                       <li>
                         <div class="d-flex">
-                          <img src="images/faces/face1.jpg" alt="user">
                           <div>
-                            <p class="text-info mb-1">Isabella Becker</p>
-                            <p class="mb-0">
-                              Sales dashboard have been created
-                            </p>
-                            <small>9:30 am</small>
-                          </div>
-                        </div>
-                      </li>
-                      <li>
-                        <div class="d-flex">
-                          <img src="images/faces/face2.jpg" alt="user">
-                          <div>
-                            <p class="text-info mb-1">Adam Warren</p>
-                            <p class="mb-0">You have done a great job #TW111</p>
-                            <small>10:30 am</small>
-                          </div>
-                        </div>
-                      </li>
-                      <li>
-                        <div class="d-flex">
-                          <img src="images/faces/face3.jpg" alt="user">
-                          <div>
-                            <p class="text-info mb-1">Leonard Thornton</p>
-                            <p class="mb-0">
-                              Sales dashboard have been created
-                            </p>
-                            <small>11:30 am</small>
-                          </div>
-                        </div>
-                      </li>
-                      <li>
-                        <div class="d-flex">
-                          <img src="images/faces/face4.jpg" alt="user">
-                          <div>
-                            <p class="text-info mb-1">George Morrison</p>
-                            <p class="mb-0">
-                              Sales dashboard have been created
-                            </p>
-                            <small>8:50 am</small>
-                          </div>
-                        </div>
-                      </li>
-                      <li>
-                        <div class="d-flex">
-                          <img src="images/faces/face5.jpg" alt="user">
-                          <div>
-                            <p class="text-info mb-1">Ryan Cortez</p>
-                            <p class="mb-0">Herbs are fun and easy to grow.</p>
-                            <small>9:00 am</small>
+                            <ul class="list-ticked">
+                              <?php
+                              $user_id = $user_info['id'];
+                              $res = mysqli_query($con, "SELECT * FROM `message` WHERE `user_id` = '$user_id'");
+                              while($row=mysqli_fetch_assoc($res)){
+                                ?>
+                                <li>
+                                  <span class="card-title"><?= $row['message'] ?></span>
+                                </li>
+                                <p class="mb-0">
+                                  <?php $replay=$row['replay']; if(empty($replay)){ echo 'Please Wait... '; }else{ echo $replay; }  ?>
+                                </p>
+                                <small class="mb-4"><?= date('h:i a', strtotime($row['datetime'])) ?></small>
+                                <?php
+                              }
+                              ?>
+                            </ul>
                           </div>
                         </div>
                       </li>

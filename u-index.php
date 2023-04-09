@@ -24,27 +24,41 @@
               </div>
             </div>
             <?php
-            $user_id = $user_info['id'];
-            $message = mysqli_query($con, "SELECT * FROM `message` WHERE `user_id` = '$user_id'");
-            $count_message = mysqli_num_rows($message);
+              $user_id = $user_info['id'];
+              $message = mysqli_query($con, "SELECT * FROM `message` WHERE `user_id` = '$user_id'");
+              $count_message = mysqli_num_rows($message);
 
-            $phone = $user_info['phone'];
-            $students = mysqli_query($con, "SELECT * FROM `students` WHERE `phone` = '$phone'");
-            $count_students = mysqli_num_rows($students);
-            if($count_students == 0){
-              $complete_profile = '55%';
-            }else{
-              $complete_profile = '98%';
-            }
+              $phone = $user_info['phone'];
+              $students = mysqli_query($con, "SELECT * FROM `students` WHERE `phone` = '$phone'");
+              $count_students = mysqli_num_rows($students);
+              $student_info = mysqli_fetch_assoc($students);
+              if(isset($student_info)){
+                $student_image = $student_info['image'];
+              }
+              if($count_students == 0){
+                $complete_profile = '55';
+              }elseif($student_image == 'default.png'){
+                $complete_profile = '95';
+              }else{
+                $complete_profile = '100';
+              }
             ?>
             <div class="row">
               <div class="col-md-6 grid-margin transparent">
                 <div class="row">
                   <div class="col-md-6 mb-4">
-                    <div class="card card-tale">
+                  <div class="card data-icon-card-<?php
+                              if($complete_profile < 56){
+                                echo 'primary';
+                              }elseif($complete_profile < 96){
+                                echo 'warning';
+                              }else{
+                                echo 'success';
+                              }
+                              ?>">
                       <div class="card-body">
                         <p class="mb-4">Complete Profile</p>
-                        <p class="fs-30 mb-2"><?= $complete_profile ?></p>
+                        <p class="fs-30 mb-2"><?= $complete_profile ?>%</p>
                       </div>
                     </div>
                   </div>
@@ -52,7 +66,7 @@
                     <div class="card card-dark-blue">
                       <div class="card-body">
                         <p class="mb-4">Total Bookings</p>
-                        <p class="fs-30 mb-2">61344</p>
+                        <p class="fs-30 mb-2">61</p>
                       </div>
                     </div>
                   </div>
@@ -68,7 +82,7 @@
                     <div class="card card-light-danger">
                       <div class="card-body">
                         <p class="mb-4">Total Bookings</p>
-                        <p class="fs-30 mb-2">61344</p>
+                        <p class="fs-30 mb-2">44</p>
                       </div>
                     </div>
                   </div>

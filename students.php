@@ -37,7 +37,7 @@
                       >
                       <div class="row mb-3">
                         <form class="d-flex justify-content-end">
-                          <a class="btn btn-primary mx-3" href="">Print</a>
+                          <a class="btn btn-primary mx-3" target="_blank" href="print_students.php">Print</a>
                           <input
                             class="form-control rounded-pill me-2"
                             type="search"
@@ -421,9 +421,9 @@
                                   readonly
                                 />
                                 <?php
+                                }
                               }
-                            }
-                          ?>
+                            ?>
                           </select>
                         </div>
                       </div>

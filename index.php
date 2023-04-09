@@ -59,7 +59,7 @@
                     <div class="card card-light-blue">
                       <div class="card-body">
                         <p class="mb-4">Total Bookings</p>
-                        <p class="fs-30 mb-2">61344</p>
+                        <p class="fs-30 mb-2">61</p>
                       </div>
                     </div>
                   </div>
