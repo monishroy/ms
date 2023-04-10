@@ -2,11 +2,11 @@
 require ('connection.inc.php');
 require ('functions.inc.php');
 
-if(!isset($_SESSION['user_login'])){
+if(!isset($_SESSION['USER_LOGIN'])){
   header('location: login.php');
 }
 
-$user_login = $_SESSION['user_login'];
+$user_login = $_SESSION['USER_LOGIN'];
 $data = mysqli_query($con, "SELECT * FROM `user` WHERE `email` = '$user_login' OR `phone` = '$user_login'");
 $user_info = mysqli_fetch_assoc($data);
 
@@ -28,9 +28,7 @@ $user_info = mysqli_fetch_assoc($data);
     <link rel="stylesheet" href="vendors/css/vendor.bundle.base.css" />
     <!-- endinject -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <!-- endinject -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <!-- Plugin css for this page -->
     <!-- Plugin css for this page -->
     <link
       rel="stylesheet"

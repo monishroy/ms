@@ -2,10 +2,10 @@
 require ('connection.inc.php');
 require ('functions.inc.php');
 
-if(isset($_SESSION['admin_login'])){
+if(isset($_SESSION['ADMIN_LOGIN'])){
   header('location: index.php');
 }
-if(isset($_SESSION['user_login'])){
+if(isset($_SESSION['USER_LOGIN'])){
   header('location: u-index.php');
 }
 
@@ -32,21 +32,21 @@ if(isset($_POST['login'])){
             setcookie('emailcookie',$email,time()+86400);
             setcookie('passwordcookie',$password,time()+86400);
 
-            $_SESSION['admin_login'] = $email;
+            $_SESSION['ADMIN_LOGIN'] = $email;
             header('location: index.php');
             exit(0);
           }else{
-            $_SESSION['user_login'] = $email;
+            $_SESSION['USER_LOGIN'] = $email;
             header('location: u-index.php');
             exit(0);
           }
         }else{
           if($row['user_type'] == 1){
-            $_SESSION['admin_login'] = $email;
+            $_SESSION['ADMIN_LOGIN'] = $email;
             header('location: index.php');
             exit(0);
           }else{
-            $_SESSION['user_login'] = $email;
+            $_SESSION['USER_LOGIN'] = $email;
             header('location: u-index.php');
             exit(0);
           }
@@ -125,7 +125,7 @@ if(isset($_POST['login'])){
                 <div class="my-2 d-flex justify-content-between align-items-center">
                   <div class="form-check">
                     <label class="form-check-label text-muted">
-                      <input type="checkbox" class="form-check-input">
+                      <input type="checkbox" name="remember-me" class="form-check-input">
                       Keep me signed in
                     </label>
                   </div>

@@ -2,11 +2,11 @@
 require ('connection.inc.php');
 require ('functions.inc.php');
 
-if(!isset($_SESSION['admin_login'])){
+if(!isset($_SESSION['ADMIN_LOGIN'])){
   header('location: login.php');
 }
 
-$admin_login = $_SESSION['admin_login'];
+$admin_login = $_SESSION['ADMIN_LOGIN'];
 $data = mysqli_query($con, "SELECT * FROM `user` WHERE `email` = '$admin_login' OR `phone` = '$admin_login'");
 $admin_info = mysqli_fetch_assoc($data);
 
@@ -26,8 +26,8 @@ $admin_info = mysqli_fetch_assoc($data);
     <link rel="stylesheet" href="vendors/feather/feather.css" />
     <link rel="stylesheet" href="vendors/ti-icons/css/themify-icons.css" />
     <link rel="stylesheet" href="vendors/css/vendor.bundle.base.css" />
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <!-- endinject -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <!-- Plugin css for this page -->
     <link
