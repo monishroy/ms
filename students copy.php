@@ -36,19 +36,17 @@
                         >Add Student</a
                       >
                       <div class="row mb-3">
-                        <form action="" method="POST" class="d-flex justify-content-end">
+                        <form class="d-flex justify-content-end">
                           <a class="btn btn-primary mx-3" target="_blank" href="print_students.php">Print</a>
                           <input
                             class="form-control rounded-pill me-2"
                             type="search"
                             placeholder="Search..."
                             aria-label="Search"
-                            name="studentsearch"
                           />
                           <button
                             class="btn btn-outline-success mx-3"
                             type="submit"
-                            name="search"
                           >
                             Search
                           </button>
@@ -76,26 +74,22 @@
                                 <th>Action</th>
                               </tr>
                             </thead>
-                            <?php
-                            if(isset($_POST['search'])){
-                            $result = $_POST['studentsearch'];
-                            ?>
                             <tbody>
                               <?php
-                                $sl = 1;
-                                $info = mysqli_query($con, "SELECT * FROM `students` WHERE `fname` LIKE '%$result%' OR `lname` LIKE '%$result%' OR `phone` LIKE '%$result%' OR `roll` LIKE '%$result%' OR `registration` LIKE '%$result%'");
-                                while($row = mysqli_fetch_assoc($info)){
-                                  $session = $row['session'];
-                                  $res = mysqli_query($con, "SELECT * FROM `session` WHERE `id` = '$session'");
-                                  $session_data = mysqli_fetch_assoc($res);
+                              $sl = 1;
+                              $result = mysqli_query($con, "SELECT * FROM `students` ORDER BY `id` desc");
+                              while($row=mysqli_fetch_assoc($result)){
+                                $session = $row['session'];
+                                $res = mysqli_query($con, "SELECT * FROM `session` WHERE `id` = '$session'");
+                                $session_data = mysqli_fetch_assoc($res);
 
-                                  $department = $row['department'];
-                                  $res = mysqli_query($con, "SELECT * FROM `department` WHERE `id` = '$department'");
-                                  $department_data = mysqli_fetch_assoc($res);
+                                $department = $row['department'];
+                                $res = mysqli_query($con, "SELECT * FROM `department` WHERE `id` = '$department'");
+                                $department_data = mysqli_fetch_assoc($res);
 
-                                  $company = $row['company'];
-                                  $res = mysqli_query($con, "SELECT * FROM `company` WHERE `id` = '$company'");
-                                  $company_data = mysqli_fetch_assoc($res);
+                                $company = $row['company'];
+                                $res = mysqli_query($con, "SELECT * FROM `company` WHERE `id` = '$company'");
+                                $company_data = mysqli_fetch_assoc($res);
                                 ?>
                                 <tr>
                                   <td><?= $sl ?></td>
@@ -128,66 +122,9 @@
                                 </tr>
                                 <?php
                                 $sl++;
-                                }
+                              }
                               ?>
                             </tbody>
-                            <?php
-                            }else{
-                            ?>
-                            <tbody>
-                              <?php
-                                $sl = 1;
-                                $info = mysqli_query($con, "SELECT * FROM `students`");
-                                while($row = mysqli_fetch_assoc($info)){
-                                  $session = $row['session'];
-                                  $res = mysqli_query($con, "SELECT * FROM `session` WHERE `id` = '$session'");
-                                  $session_data = mysqli_fetch_assoc($res);
-
-                                  $department = $row['department'];
-                                  $res = mysqli_query($con, "SELECT * FROM `department` WHERE `id` = '$department'");
-                                  $department_data = mysqli_fetch_assoc($res);
-
-                                  $company = $row['company'];
-                                  $res = mysqli_query($con, "SELECT * FROM `company` WHERE `id` = '$company'");
-                                  $company_data = mysqli_fetch_assoc($res);
-                                ?>
-                                <tr>
-                                  <td><?= $sl ?></td>
-                                  <td>
-                                    <img src="images/user/<?= $row['image'] ?>" style="max-height: 50px; border-radius: 50%;" alt="profile" />
-                                  </td>
-                                  <td><?= ucwords($row['fname'].' '.$row['lname']) ?></td>
-                                  <td><?= $row['roll'] ?></td>
-                                  <td><?= $row['phone'] ?></td>
-                                  <td><?= $session_data['name'] ?></td>
-                                  <td><?= $department_data['name'] ?></td>
-                                  <td>
-                                    <?php
-                                      if($row['status'] == 1){
-                                        ?>
-                                        <a class="badge badge-success" href="status-update.php?activeStudent=<?= $row['id'] ?>">Active</a>
-                                        <?php
-                                      }else{
-                                        ?>
-                                        <a  class="badge badge-danger" href="status-update.php?deactiveStudent=<?= $row['id'] ?>">Deactive</a>
-                                        <?php
-                                      }
-                                    ?>
-                                  </td>
-                                  <td>
-                                    <a class="text-info fs-5" href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#studentView-<?= $row['id'] ?>"><i class='bx bx-show'></i></a>
-                                    <a class="text-warning fs-5" href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#studentEdit-<?= $row['id'] ?>"><i class='bx bx-edit'></i></a>
-                                    <a class="text-danger fs-5 lh-1" onclick="return confirm('Are you sure to delete ?')" href="delete.php?student=<?= $row['id'] ?>"><i class='bx bx-trash' ></i></a>
-                                  </td>
-                                </tr>
-                                <?php
-                                $sl++;
-                                }
-                              ?>
-                            </tbody>
-                            <?php
-                            }
-                          ?>
                           </table>
                         </div>
                       </div>
