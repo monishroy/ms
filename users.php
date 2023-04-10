@@ -14,17 +14,20 @@
                     <div class="d-flex justify-content-between">
                     <h3 class="font-weight-bold">Users</h3>
                       <div class="row mb-3">
-                        <form class="d-flex justify-content-end">
+                        <form action="" method="POST" class="d-flex justify-content-end">
                           <a class="btn btn-primary mx-3" target="_blank" href="print_user.php">Print</a>
                           <input
                             class="form-control rounded-pill me-2"
                             type="search"
                             placeholder="Search..."
                             aria-label="Search"
+                            name="usersearch"
+                            autocomplete="off"
                           />
                           <button
                             class="btn btn-outline-success mx-3"
                             type="submit"
+                            name="search"
                           >
                             Search
                           </button>
@@ -51,11 +54,15 @@
                                 <th>Action</th>
                               </tr>
                             </thead>
+                            <?php
+                            if(isset($_POST['search'])){
+                            $result = $_POST['usersearch'];
+                            ?>
                             <tbody>
                               <?php
-                              $sl = 1;
-                              $result = mysqli_query($con, "SELECT * FROM `user` ORDER BY `id` desc");
-                              while($row=mysqli_fetch_assoc($result)){
+                                $sl = 1;
+                                $info = mysqli_query($con, "SELECT * FROM `user` WHERE `fname` LIKE '%$result%' OR `lname` LIKE '%$result%' OR `phone` LIKE '%$result%' OR `email` LIKE '%$result%'");
+                                while($row = mysqli_fetch_assoc($info)){
                                 ?>
                                 <tr>
                                   <td><?= $sl ?></td>
@@ -98,9 +105,65 @@
                                 </tr>
                                 <?php
                                 $sl++;
-                              }
+                                }
                               ?>
                             </tbody>
+                            <?php
+                            }else{
+                            ?>
+                            <tbody>
+                              <?php
+                                $sl = 1;
+                                $info = mysqli_query($con, "SELECT * FROM `user`");
+                                while($row = mysqli_fetch_assoc($info)){
+                                ?>
+                                <tr>
+                                  <td><?= $sl ?></td>
+                                  <td>
+                                    <img src="images/user/<?= $row['image'] ?>" style="max-height: 50px; border-radius: 50%;" alt="profile" />
+                                  </td>
+                                  <td><?= ucwords($row['fname'].' '.$row['lname']) ?></td>
+                                  <td><?= $row['email'] ?></td>
+                                  <td><?= $row['phone'] ?></td>
+                                  <td>
+                                    <?php
+                                      if($row['user_type'] == 1){
+                                        ?>
+                                        <a class="badge badge-primary" href="status-update.php?activeUserType=<?= $row['id'] ?>">Admin</a>
+                                        <?php
+                                      }else{
+                                        ?>
+                                        <a  class="badge badge-info" href="status-update.php?deactiveUserType=<?= $row['id'] ?>">User</a>
+                                        <?php
+                                      }
+                                    ?>
+                                  </td>
+                                  <td>
+                                    <?php
+                                      if($row['status'] == 1){
+                                        ?>
+                                        <a class="badge badge-success" href="status-update.php?activeUser=<?= $row['id'] ?>">Active</a>
+                                        <?php
+                                      }else{
+                                        ?>
+                                        <a  class="badge badge-danger" href="status-update.php?deactiveUser=<?= $row['id'] ?>">Deactive</a>
+                                        <?php
+                                      }
+                                    ?>
+                                  </td>
+                                  <td>
+                                    <a class="text-warning fs-5" href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#userEdit-<?= $row['id'] ?>"><i class='bx bx-edit'></i></a>
+                                    <a class="text-danger fs-5 lh-1" onclick="return confirm('Are you sure to delete ?')" href="delete.php?user=<?= $row['id'] ?>"><i class='bx bx-trash' ></i></a>
+                                  </td>
+                                </tr>
+                                <?php
+                                $sl++;
+                                }
+                              ?>
+                            </tbody>
+                            <?php
+                            }
+                          ?>
                           </table>
                         </div>
                       </div>

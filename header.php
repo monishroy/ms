@@ -88,8 +88,12 @@ $admin_info = mysqli_fetch_assoc($data);
                   placeholder="Search now"
                   aria-label="search"
                   aria-describedby="search"
+                  autocomplete="off"
                 />
               </div>
+            </li>
+            <li class="d-none d-lg-block" style="margin-left: 200px">
+              <h3 class="font-weight-bold">Placement Record Management System</h3>
             </li>
           </ul>
           <ul class="navbar-nav navbar-nav-right">

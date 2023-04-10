@@ -44,6 +44,7 @@
                             placeholder="Search..."
                             aria-label="Search"
                             name="studentsearch"
+                            autocomplete="off"
                           />
                           <button
                             class="btn btn-outline-success mx-3"
